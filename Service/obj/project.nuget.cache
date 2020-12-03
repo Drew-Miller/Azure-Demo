@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CIL6j8WqOAlA4LHhRoSifwWW5UpImNMSv5qaXhcXuGES6+o1T4niTBWvkRGRhuN06+XFM4bRKucmtdboPrpgrw==",
+  "success": true,
+  "projectFilePath": "/Users/drewmiller/Programming/Azure/Service/Application.csproj",
+  "expectedPackageFiles": [
+    "/Users/drewmiller/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.8/microsoft.aspnetcore.app.ref.3.1.8.nupkg.sha512"
+  ],
+  "logs": []
+}
