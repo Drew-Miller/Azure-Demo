@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { Data } from './data';
+import { Greeting } from 'src/models/greeting';
+import { User } from 'src/models/user';
+import { AppService } from 'src/services/app.service';
 
 @Component({
   selector: 'app-root',
@@ -11,24 +11,34 @@ import { Data } from './data';
 export class AppComponent implements OnInit {
   title = 'App';
   text: any;
-  loaded = false;
+  users: User[];
+  loadingGreeting = true;
+  loadingUsers = true;
 
-  public constructor(private httpClient: HttpClient) { }
+  public constructor(private service: AppService) { }
 
   public ngOnInit() {
-    const apiEndpoint = environment.api;
-    const url = apiEndpoint + "/Data";
-    this.httpClient.get(url)
+    this.service.GetGreeting()
       .subscribe({
         next: (x) => {
-          const data = x as Data;
-          this.text = data.result ? data.result : 'Could not read response';
-          this.loaded = true;
+          const data = x as Greeting;
+          this.text = data.result;
+          this.loadingGreeting = false;
         },
         error: (x) => {
-          this.text = "Could not load response.";
-          this.loaded = true;
+          this.loadingGreeting = false;
         }
-      })
+      });
+    
+      this.service.GetUsers()
+      .subscribe({
+        next: (x) => {
+          this.users = x as User[];
+          this.loadingUsers = false;
+        },
+        error: (x) => {
+          this.loadingGreeting = false;
+        }
+      });
   }
 }

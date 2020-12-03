@@ -1,3 +1,3 @@
-export class Data {
+export class Greeting {
   public result: string;
 }

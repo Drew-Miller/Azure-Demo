@@ -10,6 +10,34 @@ namespace Application.Controllers
     [Route("[controller]")]
     public class DataController : ControllerBase
     {
+        private List<string> _firstNames = new List<string>()
+        {
+            "Liam",
+            "Olivia",
+            "Noah",
+            "Emma",
+            "Oliver",
+            "Ava",
+            "William",
+            "Sophia",
+            "Elijah",
+            "Isabella"
+        };
+
+        private List<string> _lastNames = new List<string>()
+        {
+            "Smith",
+            "Johnson",
+            "Williams",
+            "Brown",
+            "Jones",
+            "Miller",
+            "Davis",
+            "Garcia",
+            "Rodriguez",
+            "Wilson"
+        };
+
         private readonly ILogger<DataController> _logger;
 
         public DataController(ILogger<DataController> logger)
@@ -17,13 +45,38 @@ namespace Application.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-            => Ok(new Data() { Result = $"Hello World!" });
+        [HttpGet("Greeting")]
+        public IActionResult GetGreeting()
+            => Ok(new Data() { Result = $"Hello World! @ {DateTime.Now: MM/dd/yy H:mm:ss}" });
+
+        [HttpGet("Users")]
+        public IActionResult GetUsers()
+            => Ok(this.CreateUsers());
+
+        private IEnumerable<User> CreateUsers()
+        {
+            var random = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                yield return new User()
+                {
+                    FirstName = this._firstNames[random.Next(0, this._firstNames.Count - 1)],
+                    LastName = this._lastNames[random.Next(0, this._firstNames.Count - 1)],
+                    ID = $"{i}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}"
+                };
+            }
+        }
     }
 
     public class Data
     {
         public string Result { get; set; }
+    }
+
+    public class User
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string ID { get; set; }
     }
 }
