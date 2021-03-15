@@ -10,35 +10,25 @@ import { AppService } from 'src/services/app.service';
 })
 export class AppComponent implements OnInit {
   title = 'App';
-  text: any;
-  users: User[];
+  text = '';
+  users: User[] = [];
   loadingGreeting = true;
   loadingUsers = true;
 
   public constructor(private service: AppService) { }
 
   public ngOnInit() {
-    this.service.GetGreeting()
-      .subscribe({
-        next: (x) => {
-          const data = x as Greeting;
-          this.text = data.result;
-          this.loadingGreeting = false;
-        },
-        error: (x) => {
-          this.loadingGreeting = false;
-        }
-      });
+    console.log('init');
+    this.service.GetGreeting().subscribe({
+      next: (x: Greeting) => this.text = x.result,
+      error: (error) => console.log(error),
+      complete: () => this.loadingGreeting = false
+    });
     
-      this.service.GetUsers()
-      .subscribe({
-        next: (x) => {
-          this.users = x as User[];
-          this.loadingUsers = false;
-        },
-        error: (x) => {
-          this.loadingGreeting = false;
-        }
-      });
+    this.service.GetUsers().subscribe({
+      next: (x: User[]) => this.users = x,
+      error: (error) => console.log(error),
+      complete: () => this.loadingUsers = false
+    });
   }
 }
