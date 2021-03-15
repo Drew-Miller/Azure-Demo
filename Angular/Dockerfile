@@ -7,10 +7,10 @@ RUN npm install
 COPY . /app
 
 # docker configuration
-# RUN npm run build -- --configuration=docker
+RUN npm run build -- --configuration=docker
 
 # production configuration
-RUN npm run build -- --configuration=production
+# RUN npm run build -- --configuration=production
 
 FROM nginx:1.17.1-alpine
 COPY --from=build-step /app/dist/App /usr/share/nginx/html
