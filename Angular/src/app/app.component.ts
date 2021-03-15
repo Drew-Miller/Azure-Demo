@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   public constructor(private service: AppService) { }
 
   public ngOnInit() {
-    console.log('init');
     this.service.GetGreeting().subscribe({
       next: (x: Greeting) => this.text = x.result,
       error: (error) => console.log(error),

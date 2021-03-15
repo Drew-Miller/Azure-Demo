@@ -13,16 +13,12 @@ export class AppService {
   public constructor(private httpClient: HttpClient) {}
 
   public GetGreeting(): Observable<Greeting> {
-    console.log(environment);
     const url = this.apiEndpoint + `/${this.controller}/Greeting`;
-    console.log(url);
     return this.httpClient.get<Greeting>(url);
   }
 
   public GetUsers(): Observable<User[]> {
-    console.log(environment);
     const url = this.apiEndpoint + `/${this.controller}/Users`;
-    console.log(url);
     return this.httpClient.get<User[]>(url);
   }
 }
