@@ -18,9 +18,13 @@ namespace Application
     {
         readonly string AppCorsPolicy  = "CorsPolicy";
 
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var environment = env.EnvironmentName;
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", reloadOnChange: true, optional: true)
+                .AddJsonFile($"appsettings.{environment}.json", optional: true);
+            this.Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
