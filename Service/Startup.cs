@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,8 @@ namespace Application
 {
     public class Startup
     {
+        readonly string AppCorsPolicy  = "CorsPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +28,8 @@ namespace Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy(this.AppCorsPolicy, this.BuildCorsPolicy()));
+
             services.AddControllers();
         }
 
@@ -38,10 +43,7 @@ namespace Application
 
             app.UseHttpsRedirection();
 
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()); 
+            app.UseCors(this.AppCorsPolicy);
 
             app.UseRouting();
 
@@ -51,6 +53,21 @@ namespace Application
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private CorsPolicy BuildCorsPolicy()
+        {
+            var builder = new CorsPolicyBuilder();
+            builder.WithOrigins(this.GetOrigins())
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+            return builder.Build();
+        }
+
+        private string[] GetOrigins()
+        {
+            return this.Configuration.GetValue<string>("AllowedOrigins").Split(";");
         }
     }
 }
