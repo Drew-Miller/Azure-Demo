@@ -1,12 +1,15 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Application.csproj", "./"]
+COPY ["Application.csproj", "."]
 RUN dotnet restore "Application.csproj"
-RUN dotnet build "Application.csproj" -c Release -o /app/build
-RUN dotnet publish "Application.csproj" -c Release -o /app/publish
+COPY [".", "."]
+RUN dotnet build "Application.csproj" -c Development -o /app/build
+RUN dotnet publish "Application.csproj" -c Development -o /app/publish
+# RUN dotnet build "Application.csproj" -c Release -o /app/build
+# RUN dotnet publish "Application.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 EXPOSE 80
-COPY --from=build /publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Application.dll"]

@@ -2,10 +2,10 @@ FROM node:10-alpine as build-step
 WORKDIR /app
 COPY ["package.json", "./"]
 RUN npm install
+COPY [".", "/app"]
 
 # docker configuration
-RUN npm run build -- --configuration=docker
-
+RUN npm run-script build
 # production configuration
 # RUN npm prod
 

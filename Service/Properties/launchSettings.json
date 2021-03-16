@@ -3,7 +3,7 @@
   "profiles": {
     "Application": {
       "commandName": "Project",
-      "applicationUrl": "https://localhost:5000;http://localhost:5001",
+      "applicationUrl": "http://localhost:5000;https://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
