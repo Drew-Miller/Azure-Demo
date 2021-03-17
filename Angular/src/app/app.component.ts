@@ -10,18 +10,26 @@ import { AppService } from 'src/services/app.service';
 })
 export class AppComponent implements OnInit {
   title = 'App';
-  text = '';
+  greeting = '';
+  function = '';
   users: User[] = [];
   loadingGreeting = true;
+  loadingFunction = true;
   loadingUsers = true;
 
   public constructor(private service: AppService) { }
 
   public ngOnInit() {
     this.service.GetGreeting().subscribe({
-      next: (x: Greeting) => this.text = x.result,
+      next: (x: Greeting) => this.greeting = x.result,
       error: (error) => console.log(error),
       complete: () => this.loadingGreeting = false
+    });
+
+    this.service.GetFunction('Azure Function').subscribe({
+      next: (x: string) => this.function = x,
+      error: (error) => console.log(error),
+      complete: () => this.loadingFunction = false
     });
     
     this.service.GetUsers().subscribe({

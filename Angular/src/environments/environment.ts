@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  api: 'http://localhost:5000'
+  serviceEndpoint: 'http://localhost:5000',
+  functionEndpoint: 'http://localhost:4400'
 };

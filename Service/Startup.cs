@@ -16,8 +16,6 @@ namespace Application
 {
     public class Startup
     {
-        readonly string AppCorsPolicy  = "CorsPolicy";
-
         public Startup(IWebHostEnvironment env)
         {
             var environment = env.EnvironmentName;
@@ -32,8 +30,6 @@ namespace Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options => options.AddPolicy(this.AppCorsPolicy, this.BuildCorsPolicy()));
-
             services.AddControllers();
         }
 
@@ -45,9 +41,9 @@ namespace Application
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseCors(this.AppCorsPolicy);
+            app.UseCors(x => x.WithOrigins(this.GetOrigins())
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseRouting();
 
@@ -57,16 +53,6 @@ namespace Application
             {
                 endpoints.MapControllers();
             });
-        }
-
-        private CorsPolicy BuildCorsPolicy()
-        {
-            var builder = new CorsPolicyBuilder();
-            builder.WithOrigins(this.GetOrigins())
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials();
-            return builder.Build();
         }
 
         private string[] GetOrigins()

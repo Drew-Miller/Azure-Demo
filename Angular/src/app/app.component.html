@@ -6,8 +6,15 @@
   <!-- Terminal -->
   <div class="terminal">
     <pre *ngIf="loadingGreeting">Loading greeting....</pre>
-    <pre *ngIf="!loadingGreeting && !text">Could not load greeting.</pre>
-    <pre *ngIf="!loadingGreeting">{{ text }}</pre>
+    <pre *ngIf="!loadingGreeting && !greeting">Could not load greeting.</pre>
+    <pre *ngIf="!loadingGreeting">{{ greeting }}</pre>
+  </div>
+
+  <div class="function">
+    <img height="40px" width="40px" src="/assets/function_app.png" />
+    <h3 *ngIf="loadingGreeting">Loading function....</h3>
+    <h3 *ngIf="!loadingFunction && !function">Could not load function.</h3>
+    <h3 *ngIf="!loadingGreeting">{{ function }}</h3>
   </div>
 
   <!-- Cards -->

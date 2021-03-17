@@ -1,11 +1,10 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["Application.csproj", "."]
 RUN dotnet restore "Application.csproj"
 COPY [".", "."]
 RUN dotnet build "Application.csproj" -c Development -o /app/build
 RUN dotnet publish "Application.csproj" -c Development -o /app/publish
-# RUN dotnet build "Application.csproj" -c Release -o /app/build
 # RUN dotnet publish "Application.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
