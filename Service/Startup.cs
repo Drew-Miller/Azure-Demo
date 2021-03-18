@@ -41,10 +41,6 @@ namespace Application
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(x => x.WithOrigins(this.GetOrigins())
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-
             app.UseRouting();
 
             app.UseAuthorization();
@@ -53,11 +49,6 @@ namespace Application
             {
                 endpoints.MapControllers();
             });
-        }
-
-        private string[] GetOrigins()
-        {
-            return this.Configuration.GetValue<string>("AllowedOrigins").Split(";");
         }
     }
 }
