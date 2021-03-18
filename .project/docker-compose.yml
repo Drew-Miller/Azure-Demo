@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: ../Angular
-      dockerfile: Dockerfile.release
+      dockerfile: Dockerfile
       args:
         release: "false"
     ports:
@@ -11,7 +11,7 @@ services:
   service:
     build:
       context: ../Service
-      dockerfile: Dockerfile.release
+      dockerfile: Dockerfile
       args:
         release: "false"
     ports:
