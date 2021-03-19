@@ -1,0 +1,12 @@
+Finish setting up custom cosmos db, and use the commands properly.
+
+Implement Application Repository, take db interface through DI.
+
+Add CosmosDb through DI.
+
+Use Connection strings either from Data (which would help specificy the cosmos db vs. a different type of database),
+    or through DI (could be tricky with different db types).
+
+Interface database class that can be implemented by both cosmos and entity.
+
+Apply validation logic to cosmos db in order to make sure transactions are saved properly.

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Data.Models
+namespace Data.Cosmos.Models
 {
     public class DemoModel
     {
