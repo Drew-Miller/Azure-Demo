@@ -1,0 +1,9 @@
+{
+	"folders": [
+		{ "path": "." },
+		{ "path": "../Function" },
+		{ "path": "../Data" },
+		{ "path": "../Service" },
+		{ "path": "../Angular" },
+	]
+}

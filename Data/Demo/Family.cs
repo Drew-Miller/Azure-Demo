@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Demo.Family
+namespace Demo.Models
 {
     public class Family
     {
