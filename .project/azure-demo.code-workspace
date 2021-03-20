@@ -5,5 +5,11 @@
 		{ "path": "../Data" },
 		{ "path": "../Service" },
 		{ "path": "../Angular" },
-	]
+	],
+	"settings": {
+		"files.exclude": {
+			"**/bin": true,
+			"**/obj": true
+		}
+	}
 }

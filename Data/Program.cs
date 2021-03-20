@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Configuration;
 using Microsoft.Azure.Cosmos;
-using Data.Cosmos;
-using Data.Cosmos.Models;
+using Data.Models;
+using Repository;
 using Demo;
 
 namespace Data
@@ -28,25 +28,20 @@ namespace Data
 
         private static async Task RunCustom()
         {
-            var dbClient = new CosmosDb(EndpointUri, PrimaryKey, "CosmosDemoDb");
-            var container = await dbClient.CreateContainer("/Model");
+            CosmosDb cosmosDb = new CosmosDb(EndpointUri, PrimaryKey, "CosmosDemoDb");
+            var repo = new ARepository(cosmosDb);
 
-            var model = new DemoModel()
+            var model = new A()
             {
                 Id = "1",
-                Value = "Hello World!"
+                Field = "Class A"
             };
-            ItemResponse<DemoModel> create = await container.CreateItemAsync<DemoModel>(model, new PartitionKey(model.Id));
-            Console.WriteLine("Created Model {0} {1}\n", create.Resource.Id, create.Resource.Value);
-            ItemResponse<DemoModel> delete = await container.DeleteItemAsync<DemoModel>(model.Id, new PartitionKey(model.Id));
-            Console.WriteLine("Deleted Model {0} {1}\n", delete.Resource.Id, delete.Resource.Value);
 
-            DatabaseResponse response = await dbClient.Delete();
-            Console.WriteLine("Deleted Database:\n");
-            Console.WriteLine(response);
-            Console.WriteLine("\n");
+            await repo.Create(model);
+            await repo.Delete(model);
 
-            dbClient.Dispose();
+            DatabaseResponse response = await cosmosDb.Delete();
+            cosmosDb.Dispose();
         }
     }
 }

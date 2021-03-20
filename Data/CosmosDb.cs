@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Net;
 using Microsoft.Azure.Cosmos;
 
-namespace Data.Cosmos
+namespace Data
 {
     public class CosmosDb 
     {
         // The Cosmos client instance
-        private CosmosClient cosmosClient;
+        private CosmosClient client;
 
         // The database we will create
         private Database database;
@@ -20,19 +20,24 @@ namespace Data.Cosmos
 
         public CosmosDb(string endpoint, string key, string name)
         {
-            this.cosmosClient = new CosmosClient(endpoint, key, new CosmosClientOptions()
+            this.client = new CosmosClient(endpoint, key, new CosmosClientOptions()
             {
                 ApplicationName = name
             });
 
-            this.CreateDatabase();
+            try
+            {
+                this.database = this.client.CreateDatabaseIfNotExistsAsync(this.databaseId).Result;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }   
         }
 
-        public async Task<Container> CreateContainer(string containerName)
+        public Task<ContainerResponse> CreateContainer(string containerName)
         {
-            Container container = await this.database.CreateContainerIfNotExistsAsync(this.containerId, containerName, 400);
-            Console.WriteLine("Created Container: {0}\n", this.containerId);
-            return container;
+            return this.database.CreateContainerIfNotExistsAsync(this.containerId, containerName, 400);
         }
 
         public Task<DatabaseResponse> Delete()
@@ -42,12 +47,7 @@ namespace Data.Cosmos
 
         public void Dispose() 
         {
-            this.cosmosClient.Dispose();
-        }
-
-        private async void CreateDatabase()
-        {
-            this.database = await this.cosmosClient.CreateDatabaseIfNotExistsAsync(this.databaseId);
+            this.client.Dispose();
         }
     }
 }
