@@ -1,8 +1,10 @@
 using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Net;
+using System.Configuration;
+using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Data.Models;
+using Data.Repository;
 
 namespace Data
 {
@@ -15,14 +17,16 @@ namespace Data
         private Database database;
 
         // Move these to app settings
-        private string databaseId = "DemoDatabase";
-        private string containerId = "DemoContainer";
+        private string databaseId = "FoodDatabase";
+        private string containerId = "FoodContainer";
+        private static readonly string EndpointUri = ConfigurationManager.AppSettings["EndPointUri"];
+        private static readonly string PrimaryKey = ConfigurationManager.AppSettings["PrimaryKey"];
 
-        public CosmosDb(string endpoint, string key, string name)
+        public CosmosDb(string endpoint, string key, string applicationName)
         {
             this.client = new CosmosClient(endpoint, key, new CosmosClientOptions()
             {
-                ApplicationName = name
+                ApplicationName = applicationName
             });
 
             try
@@ -33,6 +37,50 @@ namespace Data
             {
                 throw;
             }   
+        }
+
+        public static async Task Test()
+        {
+            CosmosDb cosmosDb = new CosmosDb(EndpointUri, PrimaryKey, "AzureDemo");
+            var repo = new FoodRepository(cosmosDb);
+
+            var beef = new Food()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Filet",
+                FoodGroup = "Beef Product"
+            };
+            var baked = new Food()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Bagel",
+                FoodGroup = "Baked Product"
+            };
+            var cheese = new Food()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Cheddar",
+                FoodGroup = "Cheese Product"
+            };
+            var sausage = new Food()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Italian Sausage",
+                FoodGroup = "Sausage and Luncheon Meats"
+            };
+            var foods = new List<Food>() { beef, baked, cheese, sausage };
+
+            foreach(var food in foods)
+            {
+                await repo.Create(food);
+            }
+            foreach(var food in foods)
+            {
+                await repo.Delete(food.Id, food.Partition());
+            }
+
+            DatabaseResponse response = await cosmosDb.Delete();
+            cosmosDb.Dispose();
         }
 
         public Task<ContainerResponse> CreateContainer(string containerName)

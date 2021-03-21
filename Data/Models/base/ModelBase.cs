@@ -6,11 +6,6 @@ namespace Data.Models.Base
     public abstract class ModelBase
     {
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
+        public Guid Id { get; set; }
     }
 }

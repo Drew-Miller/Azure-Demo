@@ -1,51 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using Data;
 using Data.Models.Base;
 
-namespace Repository.Base
+namespace Data.Repository.Base
 {
-    public abstract class BasePartitionRepository<T> where T: ModelBase
+    public abstract class BasePartitionRepository<T> where T: PartitionModel
     {
         protected Container container;
 
         public BasePartitionRepository(CosmosDb cosmos, string containerName)
+            => this.container = cosmos.CreateContainer(containerName).Result;
+
+        // public async Task<IEnumerable<T>> Get()
+        // {
+        //     var result = new List<T>();
+
+        //     var iterator = container.GetItemLinqQueryable<T>().GetEnumerator();
+        //     while(iterator.HasMoreResults)
+        //     {
+        //         FeedResponse<T> set = await iterator.ReadNextAsync();
+        //         foreach(T v in set)
+        //         {
+        //             result.Add(v);
+        //         }
+        //     }
+
+        //     return result;
+        // }
+
+        public async Task<T> Get(Guid id, string partition)
         {
-            this.container = cosmos.CreateContainer(containerName).Result;
+            PartitionKey partitionKey = new PartitionKey(partition);
+            ItemResponse<T> response = await container.ReadItemAsync<T>(id.ToString(), partitionKey);
+            return response.Resource;
         }
 
         public async Task<T> Create(T model)
         {
             ItemResponse<T> response;
-            var partitionKey = this.GetPartitionKey(model);
+            PartitionKey partitionKey = new PartitionKey(model.Partition());
 
             try
             {
-                response = await container.ReadItemAsync<T>(model.Id, partitionKey);                
+                response = await container.ReadItemAsync<T>(model.Id.ToString(), partitionKey);
             }
-            catch (System.Exception)
+            catch(CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
-                response = await container.CreateItemAsync<T>(model, partitionKey);                
+                response = await container.CreateItemAsync<T>(model, partitionKey);
             }
 
             return response.Resource;
         }
 
-        public async Task<string> Delete(T model)
+        public async Task<T> Update(T model)
         {
-            var partitionKey = this.GetPartitionKey(model);
-
-            try
-            {
-                ItemResponse<T> response = await container.DeleteItemAsync<T>(model.Id, partitionKey);
-                return model.Id;                
-            }
-            catch (System.Exception)
-            {
-                return null;
-            }
+            PartitionKey partitionKey = new PartitionKey(model.Partition());
+            ItemResponse<T> response = await this.container.ReplaceItemAsync<T>(model, model.Id.ToString(), partitionKey);
+            return response.Resource;
         }
 
-        protected abstract PartitionKey GetPartitionKey(T model);
+        public async Task<Guid> Delete(Guid id, string partition)
+        {
+            PartitionKey partitionKey = new PartitionKey(partition);
+            ItemResponse<T> response = await container.DeleteItemAsync<T>(id.ToString(), partitionKey);
+            return id;
+        }
+
+        public async Task<Guid> Delete(T model)
+        {
+            return await this.Delete(model.Id, model.Partition());
+        }
     }
 }

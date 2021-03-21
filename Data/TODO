@@ -1,12 +1,15 @@
-Use Cosmos DB Locally.
+Implement other common repo functions.
 
-Implement Application Repository, take db interface through DI.
+Implement DB and Repo interfaces.
 
-Add CosmosDb through DI.
+DI Inject values into controller w/ Settings (test by hard coding contorller logic).
 
-Set environment configuration in Cosmos DB (or use the service? Get the environment from the service, make sure mathes the data project?)
+Make Angular application create service calls.
 
-Interface database class that can be implemented by both cosmos and entity.
-        Make demo a base class, inherit and configure db values there.
+Validate values coming in from the service.
+
+Use more complex data structures and use CRUD.
+
+Push to production.
 
 Apply validation logic to cosmos db in order to make sure transactions are saved properly.
