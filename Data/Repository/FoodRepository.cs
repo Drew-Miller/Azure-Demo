@@ -8,7 +8,7 @@ using Data.Repository.Interfaces;
 
 namespace Data.Repository
 {
-    public class FoodRepository: PartitionRepository<Food>, IFoodRepository<Food>
+    public class FoodRepository<T>: PartitionRepository<T>, IFoodRepository<T> where T: IFood
     {
         public FoodRepository(ICosmosDb cosmos): base(cosmos, "/FoodGroup") { }
     }

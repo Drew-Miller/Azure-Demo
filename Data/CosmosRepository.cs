@@ -8,11 +8,11 @@ namespace Data
 {
     public class CosmosRepository: ICosmosRepository
     {
-        public IFoodRepository<Food> FoodRepository { get; }
+        public IFoodRepository<IFood> FoodRepository { get; }
 
         public CosmosRepository(ICosmosDb db)
         {
-            this.FoodRepository = new FoodRepository(db);
+            this.FoodRepository = new FoodRepository<IFood>(db);
         }
     }
 }

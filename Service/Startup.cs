@@ -14,7 +14,6 @@ using Microsoft.Extensions.Logging;
 using Data;
 using Data.Interfaces;
 using Data.Models;
-using Data.Models.Interfaces;
 using Data.Repository;
 using Data.Repository.Interfaces;
 
@@ -39,7 +38,7 @@ namespace Service
         {
             services.AddSingleton<ICosmosDb, CosmosDb>(x => this.SetupCosmos());
             services.AddSingleton<ICosmosRepository, CosmosRepository>();
-            services.AddSingleton<IFoodRepository<Food>, FoodRepository>();
+            services.AddSingleton<IFoodRepository<Food>, FoodRepository<Food>>();
             services.AddControllers();
         }
 

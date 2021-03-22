@@ -14,7 +14,7 @@ namespace Service.Controllers
 {
     public class FoodController : BaseDbController<IFoodRepository<Food>, Food>
     {
-        protected IEnumerable<Food> _foods;
+        protected IEnumerable<IFood> _foods;
 
         public FoodController(ILogger<DataController> logger, IFoodRepository<Food> repo): base(logger, repo)
         {

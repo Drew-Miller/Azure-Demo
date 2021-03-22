@@ -6,6 +6,6 @@ namespace Data.Interfaces
 {
     public interface ICosmosRepository
     {
-        IFoodRepository<Food> FoodRepository { get; }
+        IFoodRepository<IFood> FoodRepository { get; }
     }
 }

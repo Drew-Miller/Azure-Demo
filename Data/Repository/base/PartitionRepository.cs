@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Newtonsoft.Json;
 using Data.Interfaces;
 using Data.Models.Interfaces;
 using Data.Repository.Interfaces;
@@ -57,7 +58,7 @@ namespace Data.Repository.Base
             }
             catch(CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
-                response = await container.CreateItemAsync<T>(model, partitionKey);
+                response = await container.CreateItemAsync<T>(model, partitionKey);        
             }
 
             return response.Resource;
