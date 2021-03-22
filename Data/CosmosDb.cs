@@ -16,22 +16,21 @@ namespace Data
         // The database we will create
         private Database database;
 
-        // Move these to app settings
-        private string databaseId = "FoodDatabase";
-        private string containerId = "FoodContainer";
-        private static readonly string EndpointUri = ConfigurationManager.AppSettings["EndPointUri"];
-        private static readonly string PrimaryKey = ConfigurationManager.AppSettings["PrimaryKey"];
+        // The container to add our items.
+        private string containerId;
 
-        public CosmosDb(string endpoint, string key, string applicationName)
+        public CosmosDb(string databaseId, string containerId, string applicationName, string endpointUri, string primaryKey)
         {
-            this.client = new CosmosClient(endpoint, key, new CosmosClientOptions()
+            this.containerId = containerId;
+
+            this.client = new CosmosClient(endpointUri, primaryKey, new CosmosClientOptions()
             {
                 ApplicationName = applicationName
             });
 
             try
             {
-                this.database = this.client.CreateDatabaseIfNotExistsAsync(this.databaseId).Result;
+                this.database = this.client.CreateDatabaseIfNotExistsAsync(databaseId).Result;
             }
             catch (System.Exception)
             {
@@ -39,10 +38,9 @@ namespace Data
             }   
         }
 
-        public static async Task Test()
+        public async Task Test()
         {
-            CosmosDb cosmosDb = new CosmosDb(EndpointUri, PrimaryKey, "AzureDemo");
-            var repo = new FoodRepository(cosmosDb);
+            var repo = new FoodRepository(this);
 
             var beef = new Food()
             {
@@ -79,8 +77,8 @@ namespace Data
                 await repo.Delete(food.Id, food.Partition());
             }
 
-            DatabaseResponse response = await cosmosDb.Delete();
-            cosmosDb.Dispose();
+            DatabaseResponse response = await this.Delete();
+            this.Dispose();
         }
 
         public Task<ContainerResponse> CreateContainer(string containerName)

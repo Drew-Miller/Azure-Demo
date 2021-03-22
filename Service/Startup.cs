@@ -11,8 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Data;
 
-namespace Application
+namespace Service
 {
     public class Startup
     {
@@ -30,6 +31,7 @@ namespace Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<CosmosDb>(x => this.SetupCosmos());
             services.AddControllers();
         }
 
@@ -49,6 +51,17 @@ namespace Application
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private CosmosDb SetupCosmos()
+        {
+            var cosmosConfig = this.Configuration.GetSection("Cosmos");
+            var databaseId = cosmosConfig.GetValue<string>("DatabaseId");
+            var containerId = cosmosConfig.GetValue<string>("ContainerId");
+            var applicationName = cosmosConfig.GetValue<string>("ApplicationName");
+            var endpointUri = cosmosConfig.GetValue<string>("EndpointUri");
+            var primaryKey = cosmosConfig.GetValue<string>("PrimaryKey");
+            return new CosmosDb(databaseId, containerId, applicationName, endpointUri, primaryKey);
         }
     }
 }

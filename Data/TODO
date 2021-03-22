@@ -1,15 +1,5 @@
 Implement other common repo functions.
 
-Implement DB and Repo interfaces.
+DI Inject Database
 
-DI Inject values into controller w/ Settings (test by hard coding contorller logic).
-
-Make Angular application create service calls.
-
-Validate values coming in from the service.
-
-Use more complex data structures and use CRUD.
-
-Push to production.
-
-Apply validation logic to cosmos db in order to make sure transactions are saved properly.
+Use Interfaces for DI. If a different database is used, use different DB and App Repository.
