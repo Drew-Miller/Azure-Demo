@@ -1,17 +1,12 @@
-using Microsoft.Azure.Cosmos;
-using Newtonsoft.Json;
 using Data.Models.Base;
+using Data.Models.Interfaces;
 
 namespace Data.Models
 {
-    public class Food: PartitionModel
+    public class Food: PartitionModel, IFood
     {
         public string Name { get; set; }
         public string FoodGroup { get; set; }
-
-        public override string Partition()
-        {
-            return this.FoodGroup;
-        }
+        public override string Partition() { return this.FoodGroup; }
     }
 }

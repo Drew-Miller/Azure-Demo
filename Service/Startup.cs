@@ -12,6 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Data;
+using Data.Interfaces;
+using Data.Models;
+using Data.Models.Interfaces;
+using Data.Repository;
+using Data.Repository.Interfaces;
 
 namespace Service
 {
@@ -32,7 +37,9 @@ namespace Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<CosmosDb>(x => this.SetupCosmos());
+            services.AddSingleton<ICosmosDb, CosmosDb>(x => this.SetupCosmos());
+            services.AddSingleton<ICosmosRepository, CosmosRepository>();
+            services.AddSingleton<IFoodRepository<Food>, FoodRepository>();
             services.AddControllers();
         }
 

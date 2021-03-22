@@ -1,14 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
-using Data.Models;
-using Data.Repository;
+using Data.Interfaces;
 
 namespace Data
 {
-    public class CosmosDb 
+    public class CosmosDb: ICosmosDb
     {
         // The Cosmos client instance
         private CosmosClient client;
@@ -36,49 +33,6 @@ namespace Data
             {
                 throw;
             }   
-        }
-
-        public async Task Test()
-        {
-            var repo = new FoodRepository(this);
-
-            var beef = new Food()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Filet",
-                FoodGroup = "Beef Product"
-            };
-            var baked = new Food()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Bagel",
-                FoodGroup = "Baked Product"
-            };
-            var cheese = new Food()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Cheddar",
-                FoodGroup = "Cheese Product"
-            };
-            var sausage = new Food()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Italian Sausage",
-                FoodGroup = "Sausage and Luncheon Meats"
-            };
-            var foods = new List<Food>() { beef, baked, cheese, sausage };
-
-            foreach(var food in foods)
-            {
-                await repo.Create(food);
-            }
-            foreach(var food in foods)
-            {
-                await repo.Delete(food.Id, food.Partition());
-            }
-
-            DatabaseResponse response = await this.Delete();
-            this.Dispose();
         }
 
         public Task<ContainerResponse> CreateContainer(string containerName)

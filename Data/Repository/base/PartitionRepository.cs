@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
-using Data;
-using Data.Models.Base;
+using Data.Interfaces;
+using Data.Models.Interfaces;
+using Data.Repository.Interfaces;
 
 namespace Data.Repository.Base
 {
-    public abstract class BasePartitionRepository<T> where T: PartitionModel
+    public abstract class PartitionRepository<T>: IPartitionRepository<T> where T: IPartitionModel
     {
         protected Container container;
 
-        public BasePartitionRepository(CosmosDb cosmos, string containerName)
-            => this.container = cosmos.CreateContainer(containerName).Result;
+        protected ICosmosDb _cosmos;
+
+        public PartitionRepository(ICosmosDb cosmos, string containerName)
+        {
+            this._cosmos = cosmos;
+            this.container = this._cosmos.CreateContainer(containerName).Result;
+        }
+        
 
         // public async Task<IEnumerable<T>> Get()
         // {
@@ -73,6 +80,12 @@ namespace Data.Repository.Base
         public async Task<Guid> Delete(T model)
         {
             return await this.Delete(model.Id, model.Partition());
+        }
+
+        public async Task TearDown()
+        {
+            DatabaseResponse response = await this._cosmos.Delete();
+            this._cosmos.Dispose();
         }
     }
 }

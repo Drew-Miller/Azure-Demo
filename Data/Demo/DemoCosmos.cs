@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Collections.Generic;
 using System.Net;
 using Microsoft.Azure.Cosmos;
-using Demo.Models;
+using Demo.Cosmos.Models;
 
-namespace Demo
+namespace Demo.Cosmos
 {
     public class DemoCosmos
     {

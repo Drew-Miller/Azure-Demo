@@ -1,16 +1,9 @@
-using System;
-using Newtonsoft.Json;
-using Microsoft.Azure.Cosmos;
+using Data.Models.Interfaces;
 
 namespace Data.Models.Base
 {
-    public abstract class PartitionModel: ModelBase
+    public abstract class PartitionModel: ModelBase, IPartitionModel
     {
         public abstract string Partition();
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
     }
 }
