@@ -1,6 +1,6 @@
 *.swp
 *.*~
-appsettings.*.json
+secrets.json
 project.lock.json
 .DS_Store
 *.pyc

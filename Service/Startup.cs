@@ -22,7 +22,8 @@ namespace Service
             var environment = env.EnvironmentName;
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", reloadOnChange: true, optional: true)
-                .AddJsonFile($"appsettings.{environment}.json", optional: true);
+                .AddJsonFile($"appsettings.{environment}.json", optional: true)
+                .AddJsonFile($"secrets.json", optional: true);
             this.Configuration = builder.Build();
         }
 
