@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
-using Newtonsoft.Json;
 using Data.Interfaces;
 using Data.Models.Interfaces;
 using Data.Repository.Interfaces;

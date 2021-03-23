@@ -1,25 +1,24 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Data.Interfaces;
 using Data.Models;
-using Data.Models.Interfaces;
 using Data.Repository.Interfaces;
 using Service.Controllers.Base;
+using Service.Helpers;
+using Service.Helpers.Interfaces;
 
 namespace Service.Controllers
 {
-    public class FoodController : BaseDbController<IFoodRepository<Food>, Food>
+    public class FoodController : BaseDbController<Food>
     {
-        protected IEnumerable<IFood> _foods;
+        protected IEnumerable<Food> _foods;
 
         public FoodController(ILogger<DataController> logger, IFoodRepository<Food> repo): base(logger, repo)
         {
-            this._repo = repo;
-
+            helper = new FoodHelper<Food>(repo);
             var beef = new Food()
             {
                 Id = new Guid("185d7c5b-3ec8-4203-9765-ce41a64c5bd5"),
@@ -52,7 +51,7 @@ namespace Service.Controllers
         {
             foreach(var food in this._foods)
             {
-                await this._repo.Create(food);
+                await helper.Create(food);
             }
 
             return Ok(this._foods);
@@ -63,17 +62,10 @@ namespace Service.Controllers
         {
             foreach(var food in this._foods)
             {
-                await this._repo.Delete(food.Id, food.Partition());
+                await helper.Delete(food.Id, food.Partition());
             }
 
             return Ok(this._foods);
-        }
-
-        [HttpGet("teardown")]
-        public async Task<IActionResult> TearDown()
-        {
-            await this._repo.TearDown();
-            return Ok();
         }
     }
 }
