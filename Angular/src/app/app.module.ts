@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from 'environments/environment';
-import { azureSecret } from 'azure.secret.js';
+import { azureSecret } from 'secrets/azure.js';
 
 import { ENV_TOKEN } from 'config/tokens.bundle';
 

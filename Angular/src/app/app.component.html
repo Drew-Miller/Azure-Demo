@@ -12,18 +12,18 @@
 
   <div class="function">
     <img height="40px" width="40px" src="/assets/function_app.png" />
-    <h3 *ngIf="loadingGreeting">Loading function....</h3>
+    <h3 *ngIf="loadingFunction">Loading function....</h3>
     <h3 *ngIf="!loadingFunction && !function">Could not load function.</h3>
-    <h3 *ngIf="!loadingGreeting">{{ function }}</h3>
+    <h3 *ngIf="!loadingFunction">{{ function }}</h3>
   </div>
 
   <!-- Cards -->
-  <pre *ngIf="loadingUsers">Loading users...</pre>
-  <pre *ngIf="!loadingUsers && !users">Could not load users.</pre>
-  <div class="card-container" *ngIf="!loadingUsers && users">
-    <div class="card" *ngFor="let user of users">
-      <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-      <p>{{ user.id }}</p>
+  <pre *ngIf="loadingFoods">Loading food...</pre>
+  <pre *ngIf="!loadingFoods && !foods">Could not load food.</pre>
+  <div class="card-container" *ngIf="!loadingFoods && foods">
+    <div class="card" *ngFor="let food of foods">
+      <h3>{{ food.foodGroup }}</h3>
+      <h3>{{ food.name }}</h3>
     </div>
   </div>
 

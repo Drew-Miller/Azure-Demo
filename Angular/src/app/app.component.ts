@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Greeting, User } from 'models/models.bundle';
-import { DataService, FoodService, FunctionService } from 'services/services.bundle';
+import { Greeting, Food } from 'models/models.bundle';
+import { DataService, FoodService, DemoTriggerService } from 'services/services.bundle';
 
 @Component({
   selector: 'app-root',
@@ -11,33 +11,35 @@ export class AppComponent implements OnInit {
   title = 'App';
   greeting = '';
   function = '';
-  users: User[] = [];
+  foods: Food[] = [];
   loadingGreeting = true;
   loadingFunction = true;
-  loadingUsers = true;
+  loadingFoods = true;
 
   public constructor(
       private dataService: DataService,
       private foodService: FoodService,
-      private functionService: FunctionService) { }
+      private demoTriggerService: DemoTriggerService) { }
 
-  public ngOnInit() {
-    this.dataService.GetGreeting().subscribe({
+  public ngOnInit(): void {
+    this.dataService.Get().subscribe({
       next: (x: Greeting) => this.greeting = x.result,
       error: (error) => console.log(error),
       complete: () => this.loadingGreeting = false
     });
 
-    this.functionService.GetFunction('Azure Function').subscribe({
+    this.demoTriggerService.Get('Azure Function').subscribe({
       next: (x: string) => this.function = x,
       error: (error) => console.log(error),
       complete: () => this.loadingFunction = false
     });
 
-    this.foodService.GetUsers().subscribe({
-      next: (x: User[]) => this.users = x,
+    this.foodService.Get().subscribe({
+      next: (x: Food[]) => {
+        this.foods = x;
+      },
       error: (error) => console.log(error),
-      complete: () => this.loadingUsers = false
+      complete: () => this.loadingFoods = false
     });
   }
 }

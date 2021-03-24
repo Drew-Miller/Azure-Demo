@@ -1,5 +1,10 @@
-export class User {
-  public firstName: string;
-  public lastName: string;
-  public id: string;
+import { PartitionModel } from './base/partition-model';
+
+export class Food extends PartitionModel {
+  public name: string;
+  public foodGroup: string;
+
+  public Partition(): string {
+    return this.foodGroup;
+  }
 }

@@ -9,12 +9,10 @@ import { ApiService } from './base/api.service';
 export class DataService extends ApiService {
 
   public constructor(@Inject(ENV_TOKEN) env: {serviceEndpoint}, httpClient: HttpClient) {
-    super(env, httpClient);
-    this.Controller = '/Data/Greeting';
+    super(env.serviceEndpoint, 'Data', httpClient);
   }
 
   public Get(): Observable<Greeting> {
-    const url = this.Endpoint + this.Controller;
-    return this.httpClient.get<Greeting>(url);
+    return this.httpClient.get<Greeting>(this.BuildUrl('Greeting'));
   }
 }

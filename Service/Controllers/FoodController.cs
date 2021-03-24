@@ -46,6 +46,12 @@ namespace Service.Controllers
             this._foods = new List<Food>() { beef, baked, cheese, sausage };
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(this._foods);
+        }
+
         [HttpGet("init")]
         public async Task<IActionResult> Init()
         {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { DataService, FoodService, FunctionService } from './services.bundle';
+import { DataService, DemoTriggerService, FoodService } from './services.bundle';
 
 @NgModule({
-  providers: [DataService, FoodService, FunctionService]
+  providers: [DataService, DemoTriggerService, FoodService]
 })
 export class ServicesModule { }

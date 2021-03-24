@@ -6,12 +6,12 @@ import { FunctionService } from './base/function.service';
 
 @Injectable()
 export class DemoTriggerService extends FunctionService {
-  public constructor(@Inject(ENV_TOKEN) env: {functionEndpoint, functionCode}, httpClient: HttpClient) {
-    super(env, httpClient);
+  public constructor(@Inject(ENV_TOKEN) env: {functionEndpoint, demoTriggerCode}, httpClient: HttpClient) {
+    super(env.functionEndpoint, 'DemoTrigger', env.demoTriggerCode, httpClient);
   }
 
-  public Get(query: string = 'Azure'): Observable<string> {
-    const url = this.Endpoint + this.Controller + this.SanitizeQuery(query);
-    return this.httpClient.get<any>(url, this.textHeaders);
+  public Get(v: string = 'Azure'): Observable<string> {
+    const nameQuery = { param: 'name', value: v };
+    return this.httpClient.get<string>(this.BuildUrl(null, [this.CodeQuery, nameQuery]), this.textHeaders);
   }
 }
