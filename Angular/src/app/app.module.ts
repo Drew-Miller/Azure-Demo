@@ -3,10 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+import { environment } from 'environments/environment';
+import { azureSecret } from 'azure.secret.js';
+
+import { ENV_TOKEN } from 'config/tokens.bundle';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AppService } from 'src/services/app.service';
+import { ServicesModule } from 'services/services.module';
 
 @NgModule({
   declarations: [
@@ -16,9 +21,12 @@ import { AppService } from 'src/services/app.service';
     BrowserModule,
     CommonModule,
     HttpClientModule,
+    ServicesModule,
     AppRoutingModule
   ],
-  providers: [AppService],
+  providers: [
+    { provide: ENV_TOKEN, useValue: { ...environment, ...azureSecret }}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

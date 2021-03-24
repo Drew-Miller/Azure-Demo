@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Greeting } from 'src/models/greeting';
-import { User } from 'src/models/user';
-import { AppService } from 'src/services/app.service';
+import { Greeting, User } from 'models/models.bundle';
+import { DataService, FoodService, FunctionService } from 'services/services.bundle';
 
 @Component({
   selector: 'app-root',
@@ -17,22 +16,25 @@ export class AppComponent implements OnInit {
   loadingFunction = true;
   loadingUsers = true;
 
-  public constructor(private service: AppService) { }
+  public constructor(
+      private dataService: DataService,
+      private foodService: FoodService,
+      private functionService: FunctionService) { }
 
   public ngOnInit() {
-    this.service.GetGreeting().subscribe({
+    this.dataService.GetGreeting().subscribe({
       next: (x: Greeting) => this.greeting = x.result,
       error: (error) => console.log(error),
       complete: () => this.loadingGreeting = false
     });
 
-    this.service.GetFunction('Azure Function').subscribe({
+    this.functionService.GetFunction('Azure Function').subscribe({
       next: (x: string) => this.function = x,
       error: (error) => console.log(error),
       complete: () => this.loadingFunction = false
     });
-    
-    this.service.GetUsers().subscribe({
+
+    this.foodService.GetUsers().subscribe({
       next: (x: User[]) => this.users = x,
       error: (error) => console.log(error),
       complete: () => this.loadingUsers = false
