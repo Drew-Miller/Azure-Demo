@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { MaterialModule } from 'core/material.module';
 import { SharedModule } from 'core/shared.module';
+import { CoreModule } from 'core/core.module';
 import { DialogsModule } from 'dialogs/dialogs.module';
 
 import { HomeRoutingModule } from './home.routing.module';
@@ -12,6 +13,7 @@ import { MainComponent } from './main/home.main.component';
     HomeRoutingModule,
     MaterialModule,
     SharedModule,
+    CoreModule,
     DialogsModule
   ],
   declarations: [

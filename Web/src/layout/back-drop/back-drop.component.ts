@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { LAYOUT_OPTIONS } from 'config/bundle';
+import { LAYOUT_TOKEN } from 'config/config.bundle';
 import { LayoutBase } from '../base/layout.base';
 
 @Component({
@@ -11,7 +11,7 @@ import { LayoutBase } from '../base/layout.base';
 })
 export class BackDropComponent extends LayoutBase<any> {
   public isContained = false;
-  constructor(@Inject(LAYOUT_OPTIONS) layoutConfig) {
+  constructor(@Inject(LAYOUT_TOKEN) layoutConfig) {
     super(layoutConfig);
     this.isContained = layoutConfig.isBackDropContained === 'true';
   }

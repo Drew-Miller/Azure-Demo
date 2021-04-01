@@ -1,11 +1,20 @@
 {
 	"folders": [
-		{ "path": "." },
-		{ "path": "../Function" },
-		{ "path": "../Data" },
-		{ "path": "../Service" },
-		{ "path": "../Angular" },
-		{ "path": "../Web" },
+		{
+			"path": "."
+		},
+		{
+			"path": "../Function"
+		},
+		{
+			"path": "../Data"
+		},
+		{
+			"path": "../Service"
+		},
+		{
+			"path": "../Web"
+		}
 	],
 	"settings": {
 		"files.exclude": {

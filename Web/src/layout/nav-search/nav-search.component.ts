@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { SearchBase } from 'core/components/base/bundle';
+import { SearchBaseComponent } from 'core/components/base/base.bundle';
 
 @Component({
   selector: `nav-search`,
   templateUrl: `./nav-search.component.html`,
   styleUrls: [`./nav-search.component.sass`],
-  inputs: SearchBase.Inputs,
-  outputs: SearchBase.Outputs
+  inputs: SearchBaseComponent.Inputs,
+  outputs: SearchBaseComponent.Outputs
 })
-export class NavSearchComponent extends SearchBase { }
+export class NavSearchComponent extends SearchBaseComponent { }

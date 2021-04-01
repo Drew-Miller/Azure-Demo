@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-export const LAYOUT_OPTIONS = new InjectionToken('layout.options');
+export const LAYOUT_TOKEN = new InjectionToken('layout.token');
 
 export const LAYOUT = {
   showNav: 'false',  // if the nav is opened at nav start

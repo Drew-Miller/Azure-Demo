@@ -6,6 +6,23 @@
 // Tablet
 @media only screen and (max-width: 600px)
 
+@media screen and (max-width: 767px)
+  .card-container > *:not(.circle-link) ,
+  .terminal
+    width: 100%
+
+
+  .card:not(.highlight-card)
+    height: 16px
+    margin: 8px 0
+
+  .card.highlight-card span
+    margin-left: 72px
+
+  svg#rocket-smoke
+    right: 120px
+    transform: rotate(-5deg)
+
 // Small Desktop
 @media (max-width: 1310px)
 

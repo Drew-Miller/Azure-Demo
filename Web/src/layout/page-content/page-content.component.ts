@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
     .page-container {
       padding: 30px;
     }
-  `]
+  `],
+  host: { 'class': 'page-content' }
 })
 export class PageContentComponent { }

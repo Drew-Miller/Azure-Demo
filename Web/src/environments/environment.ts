@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  cookie: 'material_app_local'
+  cookie: 'azure_web_local',
+  serviceEndpoint: 'http://localhost:5000',
+  functionEndpoint: 'http://localhost:4400'
 };
 
 /*

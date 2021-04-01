@@ -7,14 +7,14 @@ import { environment } from 'environments/environment';
 import {
   APP,
   COOKIES,
-  COOKIE_OPTIONS,
-  ENV_OPTIONS,
+  COOKIE_TOKEN,
+  ENV_TOKEN,
   LAYOUT,
-  LAYOUT_OPTIONS,
+  LAYOUT_TOKEN,
   THEMES,
-  THEME_OPTIONS
-} from 'config/bundle';
-import { CookieLoader, ThemeLoader } from 'config/bundle.loader';
+  THEME_TOKEN
+} from 'config/config.bundle';
+import { CookieLoader, ThemeLoader } from 'config/loader.bundle';
 
 const releaseDate = new Date();
 releaseDate.setHours(0, 0, 0, 0);
@@ -22,19 +22,19 @@ releaseDate.setHours(0, 0, 0, 0);
 @NgModule({
   providers: [
     {
-      provide: ENV_OPTIONS,
+      provide: ENV_TOKEN,
       useValue: { ...environment, ...APP }
     },
     {
       provide: APP_INITIALIZER,
       useFactory: CookieLoader,
-      deps: [COOKIE_OPTIONS, ENV_OPTIONS],
+      deps: [COOKIE_TOKEN, ENV_TOKEN],
       multi: true
     },
     {
       provide: APP_INITIALIZER,
       useFactory: ThemeLoader,
-      deps: [COOKIE_OPTIONS, THEME_OPTIONS, OverlayContainer],
+      deps: [COOKIE_TOKEN, THEME_TOKEN, OverlayContainer],
       multi: true
     },
     {
@@ -46,9 +46,9 @@ releaseDate.setHours(0, 0, 0, 0);
       useValue: {
         ...new MatDialogConfig(), height: '800px', width: '800px' }
     },
-    { provide: COOKIE_OPTIONS, useValue: COOKIES },
-    { provide: LAYOUT_OPTIONS, useValue: LAYOUT },
-    { provide: THEME_OPTIONS, useValue: THEMES },
+    { provide: COOKIE_TOKEN, useValue: COOKIES },
+    { provide: LAYOUT_TOKEN, useValue: LAYOUT },
+    { provide: THEME_TOKEN, useValue: THEMES },
     {
       provide: OverlayContainer,
       useClass: FullscreenOverlayContainer

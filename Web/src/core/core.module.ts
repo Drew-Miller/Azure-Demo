@@ -5,7 +5,7 @@ import { MaterialModule } from './material.module';
 import { NgFormsModule } from './ng.forms.module';
 
 // Shared Components
-import { ThemePickerComponent } from './components.bundle';
+import { ThemePickerComponent, TerminalComponent } from './components.bundle';
 
 @NgModule({
   imports : [
@@ -14,10 +14,12 @@ import { ThemePickerComponent } from './components.bundle';
     NgFormsModule
   ],
   declarations: [
-    ThemePickerComponent
+    ThemePickerComponent,
+    TerminalComponent
   ],
   exports: [
-    ThemePickerComponent
+    ThemePickerComponent,
+    TerminalComponent
   ]
 })
 export class CoreModule { }

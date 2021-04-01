@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { LAYOUT_OPTIONS } from 'config/bundle';
+import { LAYOUT_TOKEN } from 'config/config.bundle';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ export class HeaderComponent {
   public height: string;
   public title = 'Header';
 
-  constructor(@Inject(LAYOUT_OPTIONS) layoutOptions, router: Router) {
+  constructor(@Inject(LAYOUT_TOKEN) layoutOptions, router: Router) {
     this.height = layoutOptions.navHeight;
     const routerSub = router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe({
       next: (x: NavigationEnd) => {

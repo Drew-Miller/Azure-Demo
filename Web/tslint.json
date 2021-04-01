@@ -24,9 +24,7 @@
     ],
     "component-selector": [
       true,
-      "element",
-      "",
-      "kebab-case"
+      "element"
     ],
     "eofline": true,
     "import-blacklist": [
@@ -130,7 +128,7 @@
       ]
     },
     "no-conflicting-lifecycle": true,
-    "no-host-metadata-property": true,
+    "no-host-metadata-property": false,
     "no-input-rename": true,
     "no-inputs-metadata-property": false,
     "no-output-native": true,

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ENV_OPTIONS, LAYOUT_OPTIONS } from 'config/bundle';
+import { ENV_TOKEN, LAYOUT_TOKEN } from 'config/config.bundle';
 import { LayoutBase } from '../base/layout.base';
 
 @Component({
@@ -16,8 +16,8 @@ export class NavComponent extends LayoutBase<boolean> implements OnInit {
   public teamGuid: string;
 
   public constructor(
-      @Inject(LAYOUT_OPTIONS) private layout,
-      @Inject(ENV_OPTIONS) private env) {
+      @Inject(LAYOUT_TOKEN) private layout,
+      @Inject(ENV_TOKEN) private env) {
     super(layout);
   }
 

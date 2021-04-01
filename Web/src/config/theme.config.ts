@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-export const THEME_OPTIONS = new InjectionToken('theme.options');
+export const THEME_TOKEN = new InjectionToken('theme.token');
 
 // define theme classes here
 const light = 'app-light-theme';

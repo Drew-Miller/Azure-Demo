@@ -1,11 +1,11 @@
 import { AfterContentInit, Directive, Inject } from '@angular/core';
-import { LAYOUT_OPTIONS } from 'config/bundle';
-import { ModelBase } from 'core/components/bundle';
+import { LAYOUT_TOKEN } from 'config/config.bundle';
+import { ModelBaseComponent } from 'core/components.bundle';
 
 @Directive()
-export abstract class LayoutBase<T> extends ModelBase<T> implements AfterContentInit {
-  public static Inputs = ['hasNav', 'hasSideNav', 'hasFooter', ...ModelBase.Inputs];
-  public static Outputs = [...ModelBase.Outputs];
+export abstract class LayoutBase<T> extends ModelBaseComponent<T> implements AfterContentInit {
+  public static Inputs = ['hasNav', 'hasSideNav', 'hasFooter', ...ModelBaseComponent.Inputs];
+  public static Outputs = [...ModelBaseComponent.Outputs];
 
   public hasNav: boolean;
   public hasSideNav: boolean;
@@ -14,7 +14,7 @@ export abstract class LayoutBase<T> extends ModelBase<T> implements AfterContent
   public top = '0px';
   public bottom = '0px';
 
-  constructor(@Inject(LAYOUT_OPTIONS) private layoutConfig) {
+  constructor(@Inject(LAYOUT_TOKEN) private layoutConfig) {
     super();
   }
 

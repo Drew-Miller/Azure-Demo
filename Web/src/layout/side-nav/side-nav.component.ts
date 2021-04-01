@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { COOKIE_OPTIONS, LAYOUT_OPTIONS } from 'config/bundle';
+import { COOKIE_TOKEN, LAYOUT_TOKEN } from 'config/config.bundle';
 import { LayoutBase } from 'layout/base/layout.base';
 
 @Component({
@@ -14,7 +14,7 @@ export class SideNavComponent extends LayoutBase<boolean> implements OnChanges {
   public mode: string;
   public top = '0';
 
-  constructor(@Inject(LAYOUT_OPTIONS) layoutConfig, @Inject(COOKIE_OPTIONS) private cookies) {
+  constructor(@Inject(COOKIE_TOKEN) layoutConfig, @Inject(LAYOUT_TOKEN) private cookies) {
     super(layoutConfig);
     this.mode = layoutConfig.sideNavMode;
   }

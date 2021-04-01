@@ -15,6 +15,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { NavSearchComponent } from './nav-search/nav-search.component';
 import { BackDropComponent } from './back-drop/back-drop.component';
 import { PageContentComponent } from './page-content/page-content.component';
+import { CloudsComponent } from './clouds/clouds.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { PageContentComponent } from './page-content/page-content.component';
     SideNavComponent,
     NavSearchComponent,
     BackDropComponent,
-    PageContentComponent
+    PageContentComponent,
+    CloudsComponent
   ],
   exports: [
     MainComponent

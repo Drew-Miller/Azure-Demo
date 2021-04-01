@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { COOKIE_OPTIONS } from 'config/bundle';
-import { SearchConsumer } from 'core/components/base/bundle';
-import { SearchResult } from 'models/bundle';
-import { LoremIpsomService } from 'services/bundle';
+import { COOKIE_TOKEN } from 'config/config.bundle';
+import { SearchConsumer } from 'core/components/base/base.bundle';
+import { SearchResult } from 'models/models.bundle';
+import { LoremIpsomService } from 'services/services.bundle';
 
 @Component({
   selector: 'app-layout',
@@ -11,7 +11,7 @@ import { LoremIpsomService } from 'services/bundle';
 export class MainComponent extends SearchConsumer {
   public showNav = false;
 
-  constructor(@Inject(COOKIE_OPTIONS) cookies, private loremIpsomService: LoremIpsomService) {
+  constructor(@Inject(COOKIE_TOKEN) cookies, private loremIpsomService: LoremIpsomService) {
     super();
     if (cookies.rememberNavPosition) {
       this.showNav = localStorage.getItem(cookies.showNav) === 'true';

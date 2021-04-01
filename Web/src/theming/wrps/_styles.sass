@@ -5,13 +5,12 @@
 @import '_theme.sass'
 @import '_responsive.sass'
 
-// ************************ //
-// ####################### //
-// Application Properties //
-// ##################### //
-// ******************** //
+// ********************* //
+// #################### //
+// Material Properties //
+// ################## //
+// ***************** //
 
-/// ### Card Styles ###
 mat-card-content.card-table
   section
     display: table
@@ -31,7 +30,6 @@ mat-card-content.card-table
     text-align: center
     margin: 8px 16px
 
-// ### Mat Dialog Container ###
 .mat-dialog-container
   > ng-component
     display: block
@@ -46,7 +44,6 @@ mat-card-content.card-table
     position: absolute
     bottom: 0
 
-/// ### Form Styles ###
 mat-form-field
   margin: 0 1.00rem 1.00rem 0
 
@@ -56,29 +53,9 @@ mat-radio-button
 .mat-form-field-suffix > button.mat-icon-button
   display: inline-block!important
 
-// ### Tab Styles ###
+
 .mat-tab-label-content mat-icon
   margin: 0 0.3rem
 
-// ### Application Styles ###
-.results-container
-    position: relative
-
-.results-list
-  max-height: 40vh
-  overflow: auto
-  position: absolute
-  top: 100%
-  right: 0
-  left: 0
-  z-index: -1
-  padding: 5px 0 7px
-  box-shadow: 0px 0px 10px 0px black
-
-  > p, > a
-    display: block
-    position: relative
-    padding: 0 2.6rem
-    margin: 0 0 0.75rem
-    font-size: 0.875rem
-    font-family: arial
+.mat-sort-header-button
+  text-transform: none
