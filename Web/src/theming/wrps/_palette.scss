@@ -1,7 +1,7 @@
 // Creates custom color palettes
 // Defines different weights with contrasting text colors.
 // https://material.io/design/color/the-color-system.html#tools-for-picking-colors
-$wrps-green: (
+$grass-green: (
     50 : #e7f5e5,
     100 : #c5e6c0,
     200 : #9fd598,
@@ -26,7 +26,7 @@ $wrps-green: (
     )
 );
 
-$wrps-blue: (
+$aqua-blue: (
     50 : #e2eff2,
     100 : #b8d6e0,
     200 : #8fbdcd,
@@ -49,6 +49,56 @@ $wrps-blue: (
         800 : #ffffff,
         900 : #ffffff
     )
+);
+
+$sky-blue: (
+  50 : #E3F2FD,
+  100 : #BBDEFB,
+  200 : #8fbdcd,
+  300 : #64B4F6,
+  400 : #42A4F5,
+  500 : #2094F3,
+  600 : #1E88E5,
+  700 : #1976D2,
+  800 : #1565C0,
+  900 : #0D46A1,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff
+  )
+);
+
+$sunset-gold: (
+  50 : #faf1e1,
+  100 : #f4dbb3,
+  200 : #ecc483,
+  300 : #e5ad54,
+  400 : #e19d34,
+  500 : #dc8e20,
+  600 : #d8831d,
+  700 : #d27619,
+  800 : #cb6816,
+  900 : #bf5213,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff
+  )
 );
 
 $neon-pink: (

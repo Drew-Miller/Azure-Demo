@@ -84,46 +84,35 @@
 
 // Light Theme Styles
 .app-light-theme
-  $default-background: #fafafa
-  $default-color: rgba(0, 0, 0, 0.87)
   @include angular-material-theme($light-theme)
+
+  .primary
+    color: $l-primary
+
+  .secondary
+    color: $l-secondary
 
   .layer-1
     background-color: $l-primary
     color: $l-primary-contrast
 
-    .primary
-      color: mat-color($dark-gray, 400) !important
-
-    .mat-datepicker-toggle
-      color: mat-color($dark-gray, 400)
-
-    .mat-datepicker-toggle-active
-      color: $l-secondary-accent
-
   .layer-2
-    background-color: $default-background
-    color: $default-color
+    background-color: #fafafa
+    color: rgba(0, 0, 0, 0.87)
 
     .highlight:hover
       background-color: mat-color($dark-gray, 200)
 
   .layer-3
 
-  .bottom-shadow-1
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5)
+  svg#clouds
+    fill: mat-color($dark-gray, 200)
 
-  .right-shadow-1
+  .lg-component-side
     box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2)
 
-  .primary
-    color: $l-primary !important
-
-  .secondary
-    color: $l-secondary-accent !important
-
   a.nav-indicator
-    border-bottom: 4px solid $l-secondary-accent
+    border-bottom: 4px solid $l-secondary
 
   .disabled
     color: rgba(0, 0, 0, 0.26) !important
@@ -132,6 +121,12 @@
 // Dark Theme Styles
 .app-dark-theme
   @include angular-material-theme($dark-theme)
+
+  .primary
+    color: $d-primary
+
+  .secondary
+    color: $d-secondary
 
   .layer-1
     color: mat-contrast($dark-gray, 900)
@@ -154,17 +149,11 @@
     .highlight:hover
       background-color: mat-color($dark-gray, 600)
 
-  .bottom-shadow-1
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12)
-
-  .right-shadow-1
+  .lg-component-side
     border-right: 1px solid rgba(255, 255, 255, 0.12)
 
-  .primary
-    color: $d-primary !important
-
-  .secondary
-    color: $d-secondary !important
+  svg#clouds
+    fill: mat-color($dark-gray, 700)
 
   a.nav-indicator
     border-bottom: 4px solid $d-secondary

@@ -5,11 +5,11 @@
 @import '~@angular/material/theming'
 
 // light primary
-$lp: 900
-$lpa: 700
+$lp: 700
+$lpa: 400
 
 // light secondary
-$ls: 600
+$ls: 700
 $lsa: 200
 
 
@@ -20,22 +20,16 @@ $dpa: 700
 // dark secondary
 $ds: 300
 
-// default palettes
-$light-primary: mat-palette($wrps-blue, $lp, $lpa)
-$light-secondary: mat-palette($wrps-green, $ls, $lsa)
+
+// light palette
+$light-primary: mat-palette($sky-blue, $lp, $lpa)
+$light-secondary: mat-palette($sunset-gold, $ls, $lsa)
 $light-warn: mat-palette($mat-red)
 
-// dark palettes
-$dark-primary: mat-palette($mat-lime, $dp, $dpa)
-$dark-secondary: mat-palette($neon-pink, $ds)
-$dark-warn: mat-palette($mat-orange, 500)
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as `color` or `typography`.
+// Create the theme object.
 $light-theme: mat-light-theme($light-primary, $light-secondary, $light-warn)
-$dark-theme: mat-dark-theme($dark-primary, $dark-secondary, $dark-warn)
 
-// Light Theme Colors
+// Theme Colors
 $l-primary: mat-color($light-primary, $lp)
 $l-primary-accent: mat-color($light-primary, $lpa)
 
@@ -48,7 +42,16 @@ $l-secondary-accent: mat-color($light-secondary, $lsa)
 $l-secondary-contrast: mat-contrast($light-secondary, $lsa)
 $l-secondary-accent-contrast: mat-contrast($light-secondary, $lsa)
 
-// Dark Theme Colors
+
+// dark palette
+$dark-primary: mat-palette($mat-lime, $dp, $dpa)
+$dark-secondary: mat-palette($neon-pink, $ds)
+$dark-warn: mat-palette($mat-orange, 500)
+
+// Create the theme object.
+$dark-theme: mat-dark-theme($dark-primary, $dark-secondary, $dark-warn)
+
+// Theme Colors
 $d-primary: mat-color($dark-primary, $dp)
 $d-primary-accent: mat-color($dark-primary, $dpa)
 
