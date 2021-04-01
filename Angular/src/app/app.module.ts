@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+
+import { SharedModule } from 'core/shared.module';
+import { ServicesModule } from 'services/services.module';
+import { LayoutModule } from 'layout/layout.module';
 
 import { environment } from 'environments/environment';
 import { azureSecret } from 'secrets/azure.js';
-
 import { ENV_TOKEN } from 'config/tokens.bundle';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ServicesModule } from 'services/services.module';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { ServicesModule } from 'services/services.module';
   ],
   imports: [
     BrowserModule,
-    CommonModule,
-    HttpClientModule,
+    SharedModule,
     ServicesModule,
+    LayoutModule,
     AppRoutingModule
   ],
   providers: [

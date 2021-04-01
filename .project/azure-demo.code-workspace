@@ -5,6 +5,7 @@
 		{ "path": "../Data" },
 		{ "path": "../Service" },
 		{ "path": "../Angular" },
+		{ "path": "../Web" },
 	],
 	"settings": {
 		"files.exclude": {

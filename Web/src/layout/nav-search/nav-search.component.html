@@ -1,0 +1,11 @@
+<div class="results-container" (focusout)="show = false">
+  <mat-icon class="search" color="accent">search</mat-icon>
+  <input #input [ngModel]='value' (ngModelChange)="Query($event)"
+    class="layer-2" type="text" placeholder="Search" name="search"
+    (focus)="show = true" (keyup.enter)="Search()" (keyup.escape)="show = false; input.blur();" />
+  <mat-icon *ngIf="value" class="clear" color="accent" (click)="value = ''">close</mat-icon>
+
+  <div class="results-list layer-2" *ngIf="show && value && results && results.length > 0">
+    <p class="highlight" *ngFor="let result of results; let i = index" (mousedown)="Search(result);">{{ result.text }}</p>
+  </div>
+</div>

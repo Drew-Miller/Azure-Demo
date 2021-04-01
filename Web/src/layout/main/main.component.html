@@ -1,0 +1,11 @@
+<app-nav #appNav [(model)]="showNav" [hasSideNav]="sideNav">
+  <nav-search [results]="results" (query)="OnQuery($event)" (search)="OnSearch($event)"></nav-search>
+</app-nav>
+<!-- Side Nav must wrap it's contents -->
+<side-nav #sideNav [(model)]="showNav" [hasNav]="appNav">
+  <back-drop #backDrop [hasNav]="appNav">
+    <page-content>
+      <ng-content></ng-content>
+    </page-content>
+  </back-drop>
+</side-nav>

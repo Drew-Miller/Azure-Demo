@@ -8,36 +8,14 @@ import { DataService, FoodService, DemoTriggerService } from 'services/services.
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  title = 'App';
-  greeting = '';
-  function = '';
   foods: Food[] = [];
-  loadingGreeting = true;
-  loadingFunction = true;
   loadingFoods = true;
 
-  public constructor(
-      private dataService: DataService,
-      private foodService: FoodService,
-      private demoTriggerService: DemoTriggerService) { }
+  public constructor(private foodService: FoodService) { }
 
   public ngOnInit(): void {
-    this.dataService.Get().subscribe({
-      next: (x: Greeting) => this.greeting = x.result,
-      error: (error) => console.log(error),
-      complete: () => this.loadingGreeting = false
-    });
-
-    this.demoTriggerService.Get('Azure Function').subscribe({
-      next: (x: string) => this.function = x,
-      error: (error) => console.log(error),
-      complete: () => this.loadingFunction = false
-    });
-
     this.foodService.Get().subscribe({
-      next: (x: Food[]) => {
-        this.foods = x;
-      },
+      next: (x: Food[]) => this.foods = x,
       error: (error) => console.log(error),
       complete: () => this.loadingFoods = false
     });

@@ -1,0 +1,135 @@
+// Defines different typography objects to be swapped out.
+// Change the $typography object to update your fonts.
+// https://fonts.google.com/
+// https://material.io/design/typography/the-type-system.html#type-scale
+@import '~@angular/material/theming';
+
+/**
+
+  .mat-display-4
+  .mat-display-3
+  .mat-display-2
+  .mat-display-1
+  .mat-h1, .mat-headline,
+  .mat-h2, .mat-title,
+  .mat-h3, .mat-subheading-2,
+  .mat-h4, .mat-subheading-1,
+  .mat-body, .mat-body-1,
+  .mat-body-strong, .mat-body-2,
+  .mat-small, .mat-catpion,
+  button,
+  caption
+
+**/
+
+/**
+
+  Baseline, Cap-Height (M, I), X-Height (lower case x), Ascenders (d) / Descenders(p)
+
+  Line Height: The space between baselines in a block of text.
+    Find the line-height from the height of the ascenders and descenders colliding.
+    In general, keep line-height between .75 and 1.25 of the type size.
+
+  Serif: small shape or projection that appears at the beginning or end
+    of a stroke on a letter.
+  Sans serif: typeface without serifs.
+  Monospace: all characters with the same width.
+    Use in tables w/ numbers to keep characters aligned.
+  Handwriting: Typically used for H1-H6, represents human handwriting.
+  Display: Typically used for H1-H6, a miscellaneous collection.
+  System Fonts: Find the font for the system by default.
+    Apple San Francisco Font, Android Roboto.
+
+**/
+
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semi-bold: 600;
+
+// Hanalei Font
+$hanalei: 'Hanalei, cursive';
+$hanalei-fill: 'Hanalei Fill, cursive';
+$hanalei-typography: mat-typography-config(
+  $display-4:     mat-typography-level(6.00rem, 6.00rem, $light, $hanalei),
+  $display-3:     mat-typography-level(3.75rem, 3.75rem, $regular, $hanalei),
+  $display-2:     mat-typography-level(2.80rem, 3.00rem, $regular, $hanalei),
+  $display-1:     mat-typography-level(2.13rem, 2.50rem, $regular, $hanalei),
+  $headline:      mat-typography-level(1.50rem, 2.00rem, $regular, $hanalei),
+  $title:         mat-typography-level(1.25rem, 1.25rem, $medium, $hanalei-fill),
+  $subheading-2:  mat-typography-level(1.13rem, 1.25rem, $regular, $hanalei-fill),
+  $subheading-1:  mat-typography-level(1.08rem, 1.25rem, $regular, $hanalei-fill),
+  $body-2:        mat-typography-level(1.00rem, 1.25rem, $medium, $hanalei-fill),
+  $body-1:        mat-typography-level(1.00rem, 1.25rem, $regular, $hanalei-fill),
+  $button:        mat-typography-level(1.00rem, 1.25rem, $medium, $hanalei-fill),
+  $caption:       mat-typography-level(0.75rem, 1.00rem, $regular, $hanalei-fill)
+);
+
+$ibm: 'IBM Plex Sans, sans-serif';
+$ibm-typography: mat-typography-config(
+  $display-4:     mat-typography-level(6.00rem, 6.00rem, $light, $ibm),
+  $display-3:     mat-typography-level(3.75rem, 3.75rem, $regular, $ibm),
+  $display-2:     mat-typography-level(2.80rem, 3.00rem, $regular, $ibm),
+  $display-1:     mat-typography-level(2.13rem, 2.50rem, $regular, $ibm),
+  $headline:      mat-typography-level(1.50rem, 2.00rem, $regular, $ibm),
+  $title:         mat-typography-level(1.25rem, 2.00rem, $medium, $ibm),
+  $subheading-2:  mat-typography-level(1.13rem, 1.58rem, $regular, $ibm),
+  $subheading-1:  mat-typography-level(1.08rem, 1.50rem, $regular, $ibm),
+  $body-2:        mat-typography-level(1.00rem, 1.50rem, $medium, $ibm),
+  $body-1:        mat-typography-level(1.00rem, 1.25rem, $regular, $ibm),
+  $button:        mat-typography-level(1.00rem, 1.25rem, $medium, $ibm),
+  $caption:       mat-typography-level(0.75rem, 1.00rem, $regular, $ibm)
+);
+
+$roboto: 'Roboto, monospace';
+$roboto-typography: mat-typography-config(
+  $display-4:     mat-typography-level(6.00rem, 6.00rem, $light, $roboto),
+  $display-3:     mat-typography-level(3.75rem, 3.75rem, $regular, $roboto),
+  $display-2:     mat-typography-level(2.80rem, 3.00rem, $regular, $roboto),
+  $display-1:     mat-typography-level(2.13rem, 2.50rem, $regular, $roboto),
+  $headline:      mat-typography-level(1.50rem, 2.00rem, $regular, $roboto),
+  $title:         mat-typography-level(1.25rem, 2.00rem, $medium, $roboto),
+  $subheading-2:  mat-typography-level(1.13rem, 1.58rem, $regular, $roboto),
+  $subheading-1:  mat-typography-level(1.08rem, 1.50rem, $regular, $roboto),
+  $body-2:        mat-typography-level(1.00rem, 1.50rem, $medium, $roboto),
+  $body-1:        mat-typography-level(1.00rem, 1.25rem, $regular, $roboto),
+  $button:        mat-typography-level(1.00rem, 1.25rem, $medium, $roboto),
+  $caption:       mat-typography-level(0.75rem, 1.00rem, $regular, $roboto)
+);
+
+$raleway: 'Raleway, sans-serif';
+$crane-typography: mat-typography-config(
+  $display-4:     mat-typography-level(6.00rem, 6.00rem, $light, $raleway),
+  $display-3:     mat-typography-level(3.75rem, 3.75rem, $regular, $raleway),
+  $display-2:     mat-typography-level(2.80rem, 3.00rem, $regular, $raleway),
+  $display-1:     mat-typography-level(2.13rem, 2.50rem, $regular, $raleway),
+  $headline:      mat-typography-level(1.50rem, 2.00rem, $regular, $raleway),
+  $title:         mat-typography-level(1.25rem, 2.00rem, $medium, $raleway),
+  $subheading-2:  mat-typography-level(1.13rem, 1.58rem, $regular, $raleway),
+  $subheading-1:  mat-typography-level(1.08rem, 1.50rem, $regular, $raleway),
+  $body-2:        mat-typography-level(1.00rem, 1.50rem, $medium, $raleway),
+  $body-1:        mat-typography-level(1.00rem, 1.25rem, $regular, $raleway),
+  $button:        mat-typography-level(1.00rem, 1.25rem, $medium, $raleway),
+  $caption:       mat-typography-level(0.87rem, 1.25rem, $regular, $raleway)
+);
+
+$stalinist: 'Stalinist One, cursive';
+$stalinist-typography: mat-typography-config(
+  $display-4:     mat-typography-level(6.00rem, 6.00rem, $light, $stalinist),
+  $display-3:     mat-typography-level(3.75rem, 3.75rem, $regular, $stalinist),
+  $display-2:     mat-typography-level(2.80rem, 3.00rem, $regular, $stalinist),
+  $display-1:     mat-typography-level(2.13rem, 2.50rem, $regular, $stalinist),
+  $headline:      mat-typography-level(1.50rem, 2.00rem, $regular, $stalinist),
+  $title:         mat-typography-level(1.25rem, 2.00rem, $medium, $stalinist),
+  $subheading-2:  mat-typography-level(1.13rem, 1.58rem, $regular, $stalinist),
+  $subheading-1:  mat-typography-level(1.08rem, 1.50rem, $regular, $stalinist),
+  $body-2:        mat-typography-level(1.00rem, 1.50rem, $medium, $stalinist),
+  $body-1:        mat-typography-level(1.00rem, 1.25rem, $regular, $stalinist),
+  $button:        mat-typography-level(1.00rem, 1.25rem, $medium, $stalinist),
+  $caption:       mat-typography-level(0.87rem, 1.25rem, $regular, $stalinist)
+);
+
+// Set the application typography used.
+$typography: $ibm-typography;
+
+

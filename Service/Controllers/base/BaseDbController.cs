@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Data.Models.Interfaces;
@@ -18,8 +20,6 @@ namespace Service.Controllers.Base
         protected IHelper<T> helper;
 
         public BaseDbController(ILogger<DataController> logger, IPartitionRepository<T> repo)
-        {
-            (_logger, _repo) = (logger, repo);
-        }
+            => (_logger, _repo) = (logger, repo);
     }
 }

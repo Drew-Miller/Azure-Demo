@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
@@ -21,22 +23,10 @@ namespace Data.Repository.Base
         }
         
 
-        // public async Task<IEnumerable<T>> Get()
-        // {
-        //     var result = new List<T>();
-
-        //     var iterator = container.GetItemLinqQueryable<T>().GetEnumerator();
-        //     while(iterator.HasMoreResults)
-        //     {
-        //         FeedResponse<T> set = await iterator.ReadNextAsync();
-        //         foreach(T v in set)
-        //         {
-        //             result.Add(v);
-        //         }
-        //     }
-
-        //     return result;
-        // }
+        public IEnumerable<T> Get()
+        {
+            return container.GetItemLinqQueryable<T>(true).AsEnumerable();
+        }
 
         public async Task<T> Get(Guid id, string partition)
         {

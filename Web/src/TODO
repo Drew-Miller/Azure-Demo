@@ -1,0 +1,3 @@
+1. Remove css variables from layout components and move to styles.
+
+2. Better separation of theme _styles and app styles sheets.

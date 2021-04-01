@@ -1,0 +1,102 @@
+// Creates custom color palettes
+// Defines different weights with contrasting text colors.
+// https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+$wrps-green: (
+    50 : #e7f5e5,
+    100 : #c5e6c0,
+    200 : #9fd598,
+    300 : #76c66d,
+    400 : #56ba4c,
+    500 : #33ad27,
+    600 : #289f1e,
+    700 : #188d11,
+    800 : #007c00,
+    900 : #005d00,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff
+    )
+);
+
+$wrps-blue: (
+    50 : #e2eff2,
+    100 : #b8d6e0,
+    200 : #8fbdcd,
+    300 : #6aa4b9,
+    400 : #5092ae,
+    500 : #3782a4,
+    600 : #2b7699,
+    700 : #1d6689,
+    800 : #145678,
+    900 : #063b5a,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff
+    )
+);
+
+$neon-pink: (
+  50 : #fbe5f6,
+  100 : #f3bdea,
+  200 : #ec8fdd,
+  300 : #e25cd0,
+  400 : #da26c5,
+  500 : #d000bb,
+  600 : #c100b6,
+  700 : #ad00b1,
+  800 : #9c00ac,
+  900 : #7a00a1,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff
+  )
+);
+
+$dark-gray: (
+  50 : #f7f7f7,
+  100 : #eeeeee,
+  200 : #e2e2e2,
+  300 : #d0d0d0,
+  400 : #ababab,
+  500 : #8a8a8a,
+  600 : #636363,
+  700 : #505050,
+  800 : #292929,
+  900 : #202020,
+  contrast : (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff
+  )
+);

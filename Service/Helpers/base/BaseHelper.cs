@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Data.Models.Interfaces;
 using Data.Repository.Interfaces;
@@ -15,6 +17,16 @@ namespace Service.Helpers.Base
 
         public BaseHelper(IPartitionRepository<T> repo)
             => this.repo = repo;
+
+        public IEnumerable<T> Get()
+        {
+            return repo.Get();
+        }
+
+        public async Task<T> Get(Guid id, string partition)
+        {
+            return await repo.Get(id, partition);
+        }
 
         public async Task<T> Create(T model)
         {

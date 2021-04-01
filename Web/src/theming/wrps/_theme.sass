@@ -1,0 +1,175 @@
+// Uses mat-core() functions to create a universal theme.
+// Defines colors, shapes, typography.
+@import '_colors.sass'
+@import '_typography.scss'
+@import '_shapes.sass'
+
+@include mat-core()
+
+// Typography Styles & Default Definitions
+// Remove or add styles as needed
+//
+// h1-h6: standard headers.
+//
+// mat-line: used in mat-lists.
+//
+// td, th, mat-cell, mat-header-cell: table elements.
+//
+// mat-card-*: mat-card elements.
+//
+// mat-form-field-*, .mat-input-element,
+//  .mat-select, .mat-option-text, .mat-radio-button,
+//  .mat-hint, .mat-error: Form field elements.
+//
+// .list-item: drag drop list elements.
+//
+// .mat-tree-node: mat tree elements.
+//
+.mat-typography
+  @include angular-material-typography($typography)
+
+  .mat-display-4
+    @include mat-typography-level-to-styles($typography, display-4)
+
+  .mat-display-3
+    @include mat-typography-level-to-styles($typography, display-3)
+
+  .mat-display-2
+    @include mat-typography-level-to-styles($typography, display-2)
+
+  .mat-display-1
+    @include mat-typography-level-to-styles($typography, display-1)
+
+  h1,
+  .mat-h1
+    @include mat-typography-level-to-styles($typography, headline)
+
+  h2,
+  .mat-h2,
+  .mat-card-title
+    @include mat-typography-level-to-styles($typography, title)
+
+  h3,
+  .mat-h3,
+  .mat-line:first-child,
+  .mat-tree-node
+    @include mat-typography-level-to-styles($typography, subheading-2)
+
+  h4,
+  .mat-h4,
+  .mat-subtitle,
+  .mat-card-subtitle
+    @include mat-typography-level-to-styles($typography, subheading-1)
+
+  td,
+  .mat-body-1
+  .mat-cell,
+  .mat-card-content,
+  .mat-line:nth-child(n+2),
+  .mat-input-element,
+  .mat-select,
+  .mat-option-text,
+  .mat-radio-button,
+  .mat-form-field-label,
+  .mat-chip,
+  .mat-dialog-content
+    @include mat-typography-level-to-styles($typography, body-1)
+
+  th,
+  .mat-caption
+  .mat-header-cell,
+  .mat-hint,
+  .mat-error
+    @include mat-typography-level-to-styles($typography, caption)
+
+// Light Theme Styles
+.app-light-theme
+  $default-background: #fafafa
+  $default-color: rgba(0, 0, 0, 0.87)
+  @include angular-material-theme($light-theme)
+
+  .layer-1
+    background-color: $l-primary
+    color: $l-primary-contrast
+
+    .primary
+      color: mat-color($dark-gray, 400) !important
+
+    .mat-datepicker-toggle
+      color: mat-color($dark-gray, 400)
+
+    .mat-datepicker-toggle-active
+      color: $l-secondary-accent
+
+  .layer-2
+    background-color: $default-background
+    color: $default-color
+
+    .highlight:hover
+      background-color: mat-color($dark-gray, 200)
+
+  .layer-3
+
+  .bottom-shadow-1
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5)
+
+  .right-shadow-1
+    box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2)
+
+  .primary
+    color: $l-primary !important
+
+  .secondary
+    color: $l-secondary-accent !important
+
+  a.nav-indicator
+    border-bottom: 4px solid $l-secondary-accent
+
+  .disabled
+    color: rgba(0, 0, 0, 0.26) !important
+    cursor: default !important
+
+// Dark Theme Styles
+.app-dark-theme
+  @include angular-material-theme($dark-theme)
+
+  .layer-1
+    color: mat-contrast($dark-gray, 900)
+    background: mat-color($dark-gray, 900)
+
+    .highlight:hover
+      background-color: mat-color($dark-gray, 800)
+
+  .layer-2
+    color: mat-contrast($dark-gray, 800)
+    background-color: mat-color($dark-gray, 800)
+
+    .highlight:hover
+      background-color: mat-color($dark-gray, 700)
+
+  .layer-3
+    color: mat-contrast($dark-gray, 700)
+    background-color: mat-color($dark-gray, 700)
+
+    .highlight:hover
+      background-color: mat-color($dark-gray, 600)
+
+  .bottom-shadow-1
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12)
+
+  .right-shadow-1
+    border-right: 1px solid rgba(255, 255, 255, 0.12)
+
+  .primary
+    color: $d-primary !important
+
+  .secondary
+    color: $d-secondary !important
+
+  a.nav-indicator
+    border-bottom: 4px solid $d-secondary
+
+  .disabled
+    color: rgba(255, 255, 255, 0.3) !important
+    cursor: default !important
+

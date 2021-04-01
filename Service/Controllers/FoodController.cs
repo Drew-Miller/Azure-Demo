@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 using Data.Interfaces;
 using Data.Models;
@@ -19,59 +21,52 @@ namespace Service.Controllers
         public FoodController(ILogger<DataController> logger, IFoodRepository<Food> repo): base(logger, repo)
         {
             helper = new FoodHelper<Food>(repo);
-            var beef = new Food()
-            {
-                Id = new Guid("185d7c5b-3ec8-4203-9765-ce41a64c5bd5"),
-                Name = "Filet",
-                FoodGroup = "Beef Product"
-            };
-            var baked = new Food()
-            {
-                Id = new Guid("e122110a-aab7-4666-8138-39a36191927b"),
-                Name = "Bagel",
-                FoodGroup = "Baked Product"
-            };
-            var cheese = new Food()
-            {
-                Id = new Guid("4071930c-cd0f-467e-9ec6-457290794add"),
-                Name = "Cheddar",
-                FoodGroup = "Cheese Product"
-            };
-            var sausage = new Food()
-            {
-                Id = new Guid("ad452e00-84c1-4b68-a730-c44516622d84"),
-                Name = "Italian Sausage",
-                FoodGroup = "Sausage and Luncheon Meats"
-            };
-            this._foods = new List<Food>() { beef, baked, cheese, sausage };
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery(Name = "id")] string id, [FromQuery(Name = "partition")] string partition)
         {
-            return Ok(this._foods);
+            if (this.GetPartitionQuery(id, partition, out Guid gId, out string partitionKey))
+            {
+                return Ok(await helper.Get(gId, partitionKey));
+            }
+            else
+            {
+                return Ok(Task.FromResult(helper.Get()));
+            }
         }
 
-        [HttpGet("init")]
-        public async Task<IActionResult> Init()
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromQuery(Name = "id")] string id, [FromQuery(Name = "partition")] string partition)
         {
-            foreach(var food in this._foods)
+            if (this.GetPartitionQuery(id, partition, out Guid gId, out string partitionKey))
             {
-                await helper.Create(food);
+                try
+                {
+                    return Ok(await helper.Delete(gId, partitionKey));
+                }
+                catch(CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+                {
+                    Console.WriteLine("Coud not find item to delete");
+                }
             }
 
-            return Ok(this._foods);
+            return Ok();
         }
 
-        [HttpGet("delete")]
-        public async Task<IActionResult> Delete()
+        private bool GetPartitionQuery(string id, string partition, out Guid outId, out string outString)
         {
-            foreach(var food in this._foods)
-            {
-                await helper.Delete(food.Id, food.Partition());
-            }
+            outId = Guid.Empty;
+            outString = string.Empty;
 
-            return Ok(this._foods);
+            if(!string.IsNullOrWhiteSpace(id) &&
+                !string.IsNullOrWhiteSpace(partition)
+                && Guid.TryParse(id, out outId))
+            {
+                outString = partition;
+                return true;
+            }
+            return false;
         }
     }
 }

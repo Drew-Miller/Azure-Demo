@@ -1,0 +1,13 @@
+<mat-sidenav-container class="layer-1">
+  <mat-sidenav class="lg-component-side layer-2 right-shadow-1" [mode]="mode" [opened]="model" [style.top]="top">
+    <ul>
+      <li>
+        <a mat-button routerLink="/home" routerLinkActive="mat-primary"><mat-icon>home</mat-icon>Home</a>
+        <mat-divider></mat-divider>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

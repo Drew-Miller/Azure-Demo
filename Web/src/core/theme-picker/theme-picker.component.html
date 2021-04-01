@@ -1,0 +1,13 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu button to change website theme">
+  <mat-icon class="{{color}}">more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="helper.SetTheme(themes.light)">
+    <mat-icon>light_mode</mat-icon>
+    <span>Light</span>
+  </button>
+  <button mat-menu-item (click)="helper.SetTheme(themes.dark)">
+    <mat-icon>dark_mode</mat-icon>
+    <span>Dark</span>
+  </button>
+</mat-menu>
