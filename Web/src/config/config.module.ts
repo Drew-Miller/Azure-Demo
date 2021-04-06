@@ -4,6 +4,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig } from '@angular/material/d
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 import { environment } from 'environments/environment';
+import { azureSecrets } from 'secrets/azure.js';
 import {
   APP,
   COOKIES,
@@ -23,7 +24,7 @@ releaseDate.setHours(0, 0, 0, 0);
   providers: [
     {
       provide: ENV_TOKEN,
-      useValue: { ...environment, ...APP }
+      useValue: { ...environment, ...APP, ...azureSecrets }
     },
     {
       provide: APP_INITIALIZER,

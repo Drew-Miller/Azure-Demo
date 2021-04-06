@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ENV_TOKEN } from 'config/config.bundle';
-import { Greeting } from 'models/models.bundle';
 import { ApiService } from './base/api.service';
 
 @Injectable()
@@ -12,7 +11,7 @@ export class DataService extends ApiService {
     super(env.serviceEndpoint, 'Data', httpClient);
   }
 
-  public Get(): Observable<Greeting> {
-    return this.httpClient.get<Greeting>(this.BuildUrl('Greeting'));
+  public Get(): Observable<string> {
+    return this.httpClient.get<string>(this.BuildUrl('Greeting'), this.textHeaders);
   }
 }

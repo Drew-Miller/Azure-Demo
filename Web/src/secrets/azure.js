@@ -1,5 +1,5 @@
 import { demoTriggerSecret } from './demotrigger.secret';
 
-export const azureSecret = {
+export const azureSecrets = {
   demoTriggerCode: demoTriggerSecret
 };

@@ -47,7 +47,7 @@ namespace Service.Controllers
 
         [HttpGet("Greeting")]
         public IActionResult GetGreeting()
-            => Ok(new Data() { Result = $"Hello World! @ {DateTime.Now: MM/dd/yy H:mm:ss}" });
+            => Ok($"Hello World! @ {DateTime.Now: MM/dd/yy H:mm:ss}");
 
         [HttpGet("Users")]
         public IActionResult GetUsers()
@@ -66,11 +66,6 @@ namespace Service.Controllers
                 };
             }
         }
-    }
-
-    public class Data
-    {
-        public string Result { get; set; }
     }
 
     public class User
