@@ -1,7 +1,7 @@
 <div class="layer-1">
   <div class="lg-component-bottom layer-2 back-drop"
       [ngClass]="isContained && 'self-contained'"
-      [ngStyle]="isContained && { 'max-height': GetContentHeight() }">
+      [ngStyle]="isContained && { 'height': GetContentHeight() }">
     <ng-content></ng-content>
   </div>
 </div>
