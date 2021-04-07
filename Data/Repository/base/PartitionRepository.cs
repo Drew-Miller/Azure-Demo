@@ -22,7 +22,6 @@ namespace Data.Repository.Base
             this.container = this._cosmos.CreateContainer(containerName).Result;
         }
         
-
         public IEnumerable<T> Get()
         {
             return container.GetItemLinqQueryable<T>(true).AsEnumerable();

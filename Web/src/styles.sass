@@ -39,6 +39,60 @@ button
   text-transform: uppercase
 
 
+// ********************* //
+// #################### //
+// Material Properties //
+// ################## //
+// ***************** //
+.mat-card-content.card-table
+  section
+    display: table
+
+  .table-label
+    display: table-cell
+    min-width: 160px
+    margin-left: 8px
+
+  .table-row
+    display: table-cell
+    width: 100%
+
+  p
+    min-width: 100px
+    display: inline-block
+    text-align: center
+    margin: 8px 16px
+
+.mat-dialog-container
+  > ng-component
+    display: block
+    position: relative
+    height: 100%
+    width: 100%
+
+  .mat-card
+    box-shadow: none !important
+
+  .mat-dialog-actions
+    position: absolute
+    bottom: 0
+
+.mat-form-field
+  margin: 0 1.00rem 1.00rem 0
+
+.mat-radio-button
+  margin: 0 0.5rem
+
+.mat-form-field-suffix > button.mat-icon-button
+  display: inline-block!important
+
+.mat-tab-label-content mat-icon
+  margin: 0 0.3rem
+
+.mat-sort-header-button
+  text-transform: none
+
+
 // ************************ //
 // ####################### //
 // Application Properties //
@@ -56,6 +110,11 @@ button
 .w-100
   width: 100%
 
+// Float all above the background content of the page.
+.page-container > ng-component *
+    z-index: 2
+
+// Search results elements
 .results-container
     position: relative
 
@@ -78,10 +137,61 @@ button
     font-size: 0.875rem
     font-family: arial
 
-.page-container > ng-component *
-    z-index: 2
-
-.big-card
+// Custom card elements.
+.mat-big-card
   max-width: 28rem
   display: block
 
+.card-container
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  margin-top: 16px
+
+.card
+  border-radius: 4px
+  border: 1px solid #eee
+  background-color: #fafafa
+  min-height: 40px
+  width: 200px
+  margin: 0 8px 16px
+  padding: 16px
+  transition: all .2s ease-in-out
+  line-height: 24px
+
+.card:hover
+  transform: translateY(-3px)
+  box-shadow: 0 4px 17px rgb(0 0 0 / 35%)
+  fill: #696767
+
+
+// *********************** //
+// ###################### //
+// Responsive Properties //
+// #################### //
+// ******************* //
+
+// Mobile
+@media only screen and (max-width: 485px)
+
+// Tablet
+@media only screen and (max-width: 600px)
+
+@media screen and (max-width: 767px)
+  .card-container > *:not(.circle-link) ,
+  .terminal
+    width: 100%
+
+
+  .card:not(.highlight-card)
+    margin: 8px 0
+
+  .card.highlight-card span
+    margin-left: 72px
+
+  svg#rocket-smoke
+    right: 120px
+    transform: rotate(-5deg)
+
+// Small Desktop
+@media (max-width: 1310px)

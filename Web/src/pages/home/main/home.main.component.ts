@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, DemoTriggerService } from 'services/services.bundle';
+import { Food } from 'models/models.bundle';
+import { DataService, DemoTriggerService, FoodService } from 'services/services.bundle';
 
 @Component({
   templateUrl: `./home.main.component.html`,
@@ -9,7 +10,9 @@ export class MainComponent implements OnInit {
   public function = 'Loading function...';
   public greeting = 'Loading greeting...';
 
-  constructor(private dataTrigger: DataService, private demoTriggerService: DemoTriggerService) { }
+  public food: Food[] = [];
+
+  constructor(private dataTrigger: DataService, private demoTriggerService: DemoTriggerService, private foodService: FoodService) { }
 
   public ngOnInit() {
     const dataSub = this.dataTrigger.Get().subscribe({
@@ -22,6 +25,11 @@ export class MainComponent implements OnInit {
       next: (x: string) => this.function = x,
       error: (error) => this.function = 'Could not load function.',
       complete: () => triggerSub.unsubscribe()
+    });
+
+    const foodSub = this.foodService.Get().subscribe({
+      next: (x) => this.food = x,
+      complete: () => foodSub.unsubscribe()
     });
   }
 }

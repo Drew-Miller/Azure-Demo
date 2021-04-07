@@ -5,7 +5,14 @@
   <h2>{{ function }}</h2>
 </div>
 
-<mat-card class='big-card'>
+<div class="card-container">
+  <div class="card" *ngFor="let x of food">
+    <h2>{{ x.name }}</h2>
+    <p>{{ x.foodGroup }}</p>
+  </div>
+</div>
+
+<!-- <mat-card class='mat-big-card'>
   <mat-card-header>
     <img mat-card-avatar src="/assets/material_light.svg" />
     <mat-card-title>Hello World!</mat-card-title>
@@ -25,4 +32,4 @@
     <button mat-raised-button color="accent">Like</button>
     <button mat-raised-button color="primary">Share</button>
   </mat-card-actions>
-</mat-card>
+</mat-card> -->
