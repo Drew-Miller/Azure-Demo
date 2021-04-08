@@ -1,8 +1,14 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Service.csproj", "."]
-RUN dotnet restore "Service.csproj"
-COPY [".", "."]
+COPY ["./Data/Data.csproj", "Data/"]
+RUN dotnet restore "Data/Data.csproj"
+COPY ["Data/.", "Data/"]
+
+COPY ["./Service/Service.csproj", "Service/"]
+RUN dotnet restore "Service/Service.csproj"
+COPY ["Service/.", "Service/"]
+
+WORKDIR "/src/Service"
 RUN dotnet build "Service.csproj" -c Development -o /app/build
 RUN dotnet publish "Service.csproj" -c Development -o /app/publish
 

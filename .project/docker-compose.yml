@@ -2,18 +2,14 @@ version: "3.8"
 services:
   web:
     build:
-      context: ../Angular
-      dockerfile: Dockerfile
-      args:
-        release: "false"
+      context: ../Web
+      dockerfile: Dockerfile.development
     ports:
       - "4200:80"
-  service:
-    build:
-      context: ../Service
-      dockerfile: Dockerfile
-      args:
-        release: "false"
-    ports:
-      - "5000:80"
+  # api:
+  #   build:
+  #     context: ../.
+  #     dockerfile: Service/Dockerfile.development
+  #   ports:
+  #     - "5000:80"
 
