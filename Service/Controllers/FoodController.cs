@@ -24,15 +24,17 @@ namespace Service.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery(Name = "id")] string id, [FromQuery(Name = "partition")] string partition)
+        public async Task<IActionResult> Get([FromQuery(Name = "id")] string id, [FromQuery(Name = "partition")] string partition)
         {
             if (this.GetPartitionQuery(id, partition, out Guid gId, out string partitionKey))
             {
-                return Ok(helper.Get(gId, partitionKey).Result);
+                var result = await helper.Get(gId, partitionKey);
+                return Ok(result);
             }
             else
             {
-                return Ok(helper.Get());
+                var result = helper.Get();
+                return Ok(result);
             }
         }
 

@@ -44,6 +44,7 @@ namespace Service.Controllers
         {
             _logger = logger;
         }
+            
 
         [HttpGet("Greeting")]
         public IActionResult GetGreeting()

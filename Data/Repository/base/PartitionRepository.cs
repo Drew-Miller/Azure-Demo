@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
 using Data.Interfaces;
 using Data.Models.Interfaces;
 using Data.Repository.Interfaces;
@@ -14,12 +15,12 @@ namespace Data.Repository.Base
     {
         protected Container container;
 
-        protected ICosmosDb _cosmos;
+        protected ICosmosDb cosmos;
 
         public PartitionRepository(ICosmosDb cosmos, string containerName)
         {
-            this._cosmos = cosmos;
-            this.container = this._cosmos.CreateContainer(containerName).Result;
+            this.cosmos = cosmos;
+            this.container = this.cosmos.CreateContainer(containerName).Result;
         }
         
         public IEnumerable<T> Get()
@@ -72,8 +73,8 @@ namespace Data.Repository.Base
 
         public async Task TearDown()
         {
-            DatabaseResponse response = await this._cosmos.Delete();
-            this._cosmos.Dispose();
+            DatabaseResponse response = await this.cosmos.Delete();
+            this.cosmos.Dispose();
         }
     }
 }
