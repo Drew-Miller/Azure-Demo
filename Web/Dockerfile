@@ -1,10 +1,17 @@
-FROM node:10-alpine as build-step
+FROM node:10-alpine as build
 WORKDIR /app
-COPY ["package.json", "./"]
+ARG ANGULAR_ENVIRONMENT
+
+COPY ["package.json", "."]
+RUN echo $ANGULAR_ENVIRONMENT
 RUN npm install
 COPY [".", "/app"]
-RUN ["npm" , "ng build", "--configuration release"]
+
+RUN npm run ng build -- --configuration $ANGULAR_ENVIRONMENT
 
 FROM nginx:1.17.1-alpine
-COPY /nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build-step /app/dist/Web /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN rm -rf ./*
+COPY --from=build ["/app/dist/Web", "."]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Material": {
+    "Web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,24 +61,28 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "debug": { }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Material:build"
+            "browserTarget": "Web:build"
           },
           "configurations": {
             "release": {
-              "browserTarget": "Material:build:release"
+              "browserTarget": "Web:build:release"
+            },
+            "debug": {
+              "browserTarget": "Web:build:debug"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Material:build"
+            "browserTarget": "Web:build"
           }
         },
         "test": {
@@ -116,11 +120,14 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Material:serve"
+            "devServerTarget": "Web:serve"
           },
           "configurations": {
             "release": {
-              "devServerTarget": "Material:serve:release"
+              "devServerTarget": "Web:serve:release"
+            },
+            "debug": {
+              "devServerTarget": "Web:serve:debug"
             }
           }
         }

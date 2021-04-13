@@ -14,7 +14,7 @@
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Debug"
+                "ASPNETCORE_ENVIRONMENT": "debug"
             }
         },
         {
@@ -27,7 +27,7 @@
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Release"
+                "ASPNETCORE_ENVIRONMENT": "release"
             }
         }
     ]

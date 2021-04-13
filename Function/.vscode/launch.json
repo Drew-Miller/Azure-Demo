@@ -3,7 +3,7 @@
     "configurations": [
         
     {
-        "name": "FUNCTIONS",
+        "name": "Debug",
         "type": "coreclr",
         "request": "attach",
         "processId": "${command:azureFunctions.pickProcess}"

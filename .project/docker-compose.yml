@@ -1,16 +1,18 @@
 version: "3.8"
 services:
-  # web:
-  #   build:
-  #     context: ../Web
-  #     dockerfile: Dockerfile.debug
-  #   ports:
-  #     - 4200:80
+  web:
+    build:
+      context: ../Web
+      dockerfile: Dockerfile
+      args:
+        - ANGULAR_ENVIRONMENT=${APP_ENVIRONMENT}
+    ports:
+      - 4200:80
   api:
     build:
       context: ../.
       dockerfile: Service/Dockerfile
-      # args:
-      #   - configuration=Release
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${APP_ENVIRONMENT}
     ports:
       - 5000:80
