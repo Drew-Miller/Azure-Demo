@@ -1,3 +1,7 @@
+Web/
+Function/
+./
+
 **/.classpath
 **/.dockerignore
 **/.env
@@ -7,7 +11,6 @@
 **/.settings
 **/.toolstarget
 **/.vs
-**/.vscode
 **/*.*proj.user
 **/*.dbmdl
 **/*.jfm
